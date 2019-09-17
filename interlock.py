@@ -190,35 +190,21 @@ test_out = Output(np.random.rand, print, 'test_out', 'float')
 test_inp.add_trigger('if greater than', 0.5)
 
 interlock = Interlock([test_inp], [test_out])      
+
+
         
-class InputGUI(flx.Widget):
+
+class InterlockCom(flx.Component):
     
-    def init(self,inp):
-        super().init()
-        self.input = inp
-        with flx.VBox():
-            flx.Label(html = str(inp))
-        
-
-class InterlockGUI(flx.Widget):
-
-    def init(self):
-        super().init()
-        
-        
-        with flx.VBox():
-            flx.Label(html = '<h1> QuEMS Interlock </h1>')
-            
-            for inp in interlock.inputs:
-                 InputGUI(inp)
+    
+    
+    
             
             
      
 
 
 if __name__ == '__main__':
-    
-    
     
     m = flx.launch(InterlockGUI, 'chrome')
     flx.run()
