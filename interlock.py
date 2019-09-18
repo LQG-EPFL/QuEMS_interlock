@@ -1,10 +1,16 @@
-from flexx import flx
 import time
 
 class Trigger:
-    def __init__(self, mode, value):
+    def __init__(self, inp, mode, value):
         self.mode = mode
         self.value = value
+        self.input = inp
+    def __repr__(self):
+        if self.value == None:
+            value = ''
+        else:
+            value = self.value
+        return 'Trigger if '+str(self.input)+' '+self.mode+' '+str(value)
 
 class Input:
     def __init__(self, read, name, value_type, user_name = None):
@@ -26,14 +32,14 @@ class Input:
     def add_trigger(self, mode, value = None):
         '''
             mode: if value_type is "bool" the mode can be
-                   "if False": trigger interlock on False
-                   "if True": trigger interlock on True
+                   "False": trigger interlock on False
+                   "True": trigger interlock on True
                   if value_type is float
-                   "if greater than": trigger interlock is read gives result greater than value 
-                   "if smaller than": trigger interlock is read gives result smaller than value
+                   "greater than": trigger interlock is read gives result greater than value 
+                   "smaller than": trigger interlock is read gives result smaller than value
         '''
 
-        self.triggers += [Trigger(mode, value)]
+        self.triggers += [Trigger(self, mode, value)]
             
     def check_triggers(self):
             
@@ -43,33 +49,31 @@ class Input:
          
             if self.value_type == 'bool':
                 
-                if trigger.mode == 'if False':
+                if trigger.mode == 'False':
                     if res == False:
-                        return False
+                        return trigger
 
-                elif trigger.mode == 'if True':
+                elif trigger.mode == 'True':
                     if res:
-                        return False
+                        return trigger
                         
                 else:
-                    raise ValueError('trigger mode '+trigger.mode+' is incorrect for value_type "bool"')
+                    raise ValueError('trigger mode "'+trigger.mode+'" is incorrect for value_type "bool"')
                         
             if self.value_type == 'float':
                     
-                if trigger.mode == 'if greater than':
+                if trigger.mode == 'greater than':
                         if res > trigger.value:
-                            return False
-                elif trigger.mode == 'if smaller than':
+                            return trigger
+                elif trigger.mode == 'smaller than':
                         if res < trigger.value:
-                            return False
+                            return trigger
                 else:
-                    raise ValueError('trigger mode '+trigger.mode+' is incorrect for value_type "flaot"')
-            
-        return True
+                    raise ValueError('trigger mode "'+trigger.mode+'" is incorrect for value_type "float"')
     
     def __repr__(self):
         
-        return self.name+' ('+self.user_name+')'
+        return 'Input '+self.name+' ('+self.user_name+')'
                     
                         
                         
@@ -120,8 +124,10 @@ class Output:
             self.write(self.normal_value)
     def __repr__(self):
         
-        return self.name+' ('+self.user_name+')'        
-            
+        return 'Output '+self.name+' ('+self.user_name+')'        
+
+import traceback
+    
 class Interlock:
     
     def __init__(self, inputs, outputs, rate = 1):
@@ -162,13 +168,14 @@ class Interlock:
         
     def loop(self):
         try:
-            while True:
+            for i in range(3):
                 for inp in self.inputs:
                     if self.triggered == False:
-                        if inp.check_triggers() == False:
+                        trig = inp.check_triggers()
+                        if trig is not None:
                             self.trigger()
 
-                            print ('There is a problem with ', inp)
+                            print ('There is a problem! ', trig)
                         else:    
                             print ('everything ok')
                     else:
@@ -176,35 +183,15 @@ class Interlock:
 
                 time.sleep(1/self.rate)
         except:
+            traceback.print_exc()
             self.trigger()
+            
+            
         
     def stop(self):
         self.thread.join()
         self.trigger()
-        
-
-import numpy as np     
-test_inp = Input(np.random.rand, 'test_in', 'float')
-test_out = Output(np.random.rand, print, 'test_out', 'float')
-
-test_inp.add_trigger('if greater than', 0.5)
-
-interlock = Interlock([test_inp], [test_out])      
+           
 
 
         
-
-class InterlockCom(flx.Component):
-    
-    
-    
-    
-            
-            
-     
-
-
-if __name__ == '__main__':
-    
-    m = flx.launch(InterlockGUI, 'chrome')
-    flx.run()
