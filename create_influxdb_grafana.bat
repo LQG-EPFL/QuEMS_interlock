@@ -1,0 +1,2 @@
+docker run -d --name=influxdb -p 8086:8086 --volume "C:/Users/admin/influxdb:/var/lib/influxdb" influxdb
+docker run -d --name=grafana -p 3000:3000 --volume "C:/Users/admin/graphana:/var/lib/grafana" --link influxdb grafana/grafana
