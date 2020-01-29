@@ -10,7 +10,7 @@ import timeout_decorator
 import json
 
 from influxdb import InfluxDBClient
-dbClient = InfluxDBClient('localhost', 8086, 'root', 'root', 'mydb')
+dbClient = InfluxDBClient('192.168.0.1', 8086, 'root', 'root', 'mydb')
 
 class Trigger:
     def __init__(self, inp, mode, value):
@@ -261,10 +261,12 @@ class Output:
         self.value_type = value_type
         self.triggered_value = triggered_value
         self.normal_value = normal_value
+        self.tag = tag
+        
         self.set_value(initial_value)
         self.value_before_trigger = initial_value
         
-        self.tag = tag
+        
         
         if username == None:
             self.username = name
@@ -279,6 +281,7 @@ class Output:
               },
               "time":  datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
               "fields": {
+                  "username" : self.username,
                   "value" : self.value,
                   "triggered_value": self.triggered_value,
                   "normal_value": self.normal_value,
@@ -375,6 +378,8 @@ class Output:
         self.username = config['username']
         self.normal_value = config['normal_value']
         self.triggered_value = config['triggered_value']
+        
+        self.set_value(self.triggered_value)
 
 import traceback
 class Interlock:
@@ -428,15 +433,17 @@ class Interlock:
         self.triggered = config['triggered']
         
         for name, out_conf in config['outputs'].items():
-            self.outputs[name].set_config(out_conf)
+            if name in self.outputs:
+                self.outputs[name].set_config(out_conf)
         
         for name, in_conf in config['inputs'].items():
-            self.inputs[name].set_config(in_conf)
+            if name in self.inputs:
+                self.inputs[name].set_config(in_conf)
     
     def save_config(self, filename, comment = ''):
         config = self.get_config()
         config['comment'] = comment
-        json.dump( config, open( filename, 'w' ) )
+        json.dump( config, open( filename, 'w' ) ,indent=4)
         
     def load_config(self, filename):
         config = json.load( open( filename) )
@@ -511,19 +518,20 @@ class Interlock:
     def loop(self):
         try:
             while self.running:
+                to_trig = False
                 for inp in self.inputs.values():
-                    to_trig = inp.check_triggers()
+                    to_trig = to_trig or inp.check_triggers()
                     
+                if self.triggered:
+                    to_trig = False
+
+                if to_trig:
+                    self.trigger()
+                else:
                     if self.triggered:
-                        to_trig = False
-                        
-                    if to_trig:
-                        self.trigger()
+                        logger.info('state:triggered')
                     else:
-                        if self.triggered:
-                            logger.info('state:triggered')
-                        else:
-                            logger.info('state:ok')
+                        logger.info('state:ok')
                 self.status()
                 time.sleep(1/self.rate)
                 

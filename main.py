@@ -1,6 +1,9 @@
 from interlock import *
 import gui
 
+from drivers.piplates_driver import *
+from drivers.pfeiffer_driver import *
+
 import logging
 import sys
 
@@ -8,32 +11,22 @@ logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 logger = logging.getLogger('interlock')
 
-import numpy as np     
-test_infloat = Input(np.random.rand, 'test_infloat', 'float', tag = 'tree')
+pres_ins = make_TPG362('/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AM0076FH-if00-port0')
 
 
-def randbool():
-    x = np.random.rand()
-    
-    if x >0.01:
-        return False
-    else:
-        return True
+temp_ins = make_THERMOplate(2)
 
-test_inbool = Input(randbool, 'test_inbool', 'bool')
-test_outfloat = Output(lambda x: logger.info('Output set to '+str(x)), 'test_outfloat', 'float',0., 0., 1.)
-test_outbool = Output(lambda x: logger.info('Output set to '+str(x)), 'test_outbool', 'bool',False, False, False)
+daqc1_ins, daqc1_outs = make_DAQCplate(0)
+daqc2_ins, daqc2_outs = make_DAQCplate(1)
 
-test_infloat.add_trigger('greater than', 0.9)
-test_inbool.add_trigger('True')
+interlock = Interlock(pres_ins+temp_ins+daqc1_ins+daqc2_ins,daqc1_outs + daqc2_outs)   
 
-interlock = Interlock([test_infloat, test_inbool], [test_outfloat, test_outbool])   
+config_folder = '/home/pi/Interlock/QuEMS_interlock/configs'
+interlock.load_config(config_folder+'/startup.iconf')
 
 interlock.run()
 interlock.reset()
 
-config_folder = 'C:\\Users\\sauerwei\\OneDrive\\Projekte und Jobs\\EPFL_Brantut\\programs\\interlock\\QuEMS_interlock\\configs'
-
 import remi
-remi.start(gui.QuEMS_Interlock,start_browser=False, port = 10000, userdata = (interlock,config_folder,))
+remi.start(gui.QuEMS_Interlock,start_browser=False,username = 'lqg', password = 'ManipeEPFL2018',address='0.0.0.0', port = 10000, userdata = (interlock,config_folder,))
 

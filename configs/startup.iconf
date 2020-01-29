@@ -1,0 +1,499 @@
+{
+    "running": true,
+    "triggered": false,
+    "outputs": {
+        "do(0,0)": {
+            "name": "do(0,0)",
+            "tag": "digital output",
+            "username": "do(0,0)",
+            "normal_value": false,
+            "triggered_value": false
+        },
+        "do(0,1)": {
+            "name": "do(0,1)",
+            "tag": "digital output",
+            "username": "do(0,1)",
+            "normal_value": false,
+            "triggered_value": false
+        },
+        "do(0,2)": {
+            "name": "do(0,2)",
+            "tag": "digital output",
+            "username": "do(0,2)",
+            "normal_value": false,
+            "triggered_value": false
+        },
+        "do(0,3)": {
+            "name": "do(0,3)",
+            "tag": "digital output",
+            "username": "do(0,3)",
+            "normal_value": false,
+            "triggered_value": false
+        },
+        "do(0,4)": {
+            "name": "do(0,4)",
+            "tag": "Laser",
+            "username": "1342 + 460",
+            "normal_value": true,
+            "triggered_value": false
+        },
+        "do(0,5)": {
+            "name": "do(0,5)",
+            "tag": "Laser",
+            "username": "MPBC RFAmp 1342",
+            "normal_value": true,
+            "triggered_value": false
+        },
+        "do(0,6)": {
+            "name": "do(0,6)",
+            "tag": "Laser",
+            "username": "780",
+            "normal_value": true,
+            "triggered_value": false
+        },
+        "do(0,7)": {
+            "name": "do(0,7)",
+            "tag": "Laser",
+            "username": "warning sign",
+            "normal_value": true,
+            "triggered_value": false
+        },
+        "ao(0,0)": {
+            "name": "ao(0,0)",
+            "tag": "Lithium",
+            "username": "Li flag",
+            "normal_value": 4.0,
+            "triggered_value": 0.0
+        },
+        "ao(0,1)": {
+            "name": "ao(0,1)",
+            "tag": "analog output",
+            "username": "ao(0,1)",
+            "normal_value": 0.0,
+            "triggered_value": 0.0
+        },
+        "ao(0,2)": {
+            "name": "ao(0,2)",
+            "tag": "analog output",
+            "username": "ao(0,2)",
+            "normal_value": 0.0,
+            "triggered_value": 0.0
+        },
+        "ao(0,3)": {
+            "name": "ao(0,3)",
+            "tag": "analog output",
+            "username": "ao(0,3)",
+            "normal_value": 0.0,
+            "triggered_value": 0.0
+        },
+        "pwm(0,0)": {
+            "name": "pwm(0,0)",
+            "tag": "Lithium",
+            "username": "Li oven heater",
+            "normal_value": 0.0,
+            "triggered_value": 0.0
+        },
+        "pwm(0,1)": {
+            "name": "pwm(0,1)",
+            "tag": "Lithium",
+            "username": "spectro cell heater",
+            "normal_value": 87.0,
+            "triggered_value": 87.0
+        },
+        "do(1,0)": {
+            "name": "do(1,0)",
+            "tag": "digital output",
+            "username": "do(1,0)",
+            "normal_value": false,
+            "triggered_value": false
+        },
+        "do(1,1)": {
+            "name": "do(1,1)",
+            "tag": "digital output",
+            "username": "do(1,1)",
+            "normal_value": false,
+            "triggered_value": false
+        },
+        "do(1,2)": {
+            "name": "do(1,2)",
+            "tag": "digital output",
+            "username": "do(1,2)",
+            "normal_value": false,
+            "triggered_value": false
+        },
+        "do(1,3)": {
+            "name": "do(1,3)",
+            "tag": "digital output",
+            "username": "do(1,3)",
+            "normal_value": false,
+            "triggered_value": false
+        },
+        "do(1,4)": {
+            "name": "do(1,4)",
+            "tag": "digital output",
+            "username": "do(1,4)",
+            "normal_value": false,
+            "triggered_value": false
+        },
+        "do(1,5)": {
+            "name": "do(1,5)",
+            "tag": "digital output",
+            "username": "do(1,5)",
+            "normal_value": false,
+            "triggered_value": false
+        },
+        "do(1,6)": {
+            "name": "do(1,6)",
+            "tag": "digital output",
+            "username": "do(1,6)",
+            "normal_value": false,
+            "triggered_value": false
+        },
+        "do(1,7)": {
+            "name": "do(1,7)",
+            "tag": "digital output",
+            "username": "do(1,7)",
+            "normal_value": false,
+            "triggered_value": false
+        },
+        "ao(1,0)": {
+            "name": "ao(1,0)",
+            "tag": "analog output",
+            "username": "ao(1,0)",
+            "normal_value": 0.0,
+            "triggered_value": 0.0
+        },
+        "ao(1,1)": {
+            "name": "ao(1,1)",
+            "tag": "analog output",
+            "username": "ao(1,1)",
+            "normal_value": 0.0,
+            "triggered_value": 0.0
+        },
+        "ao(1,2)": {
+            "name": "ao(1,2)",
+            "tag": "analog output",
+            "username": "ao(1,2)",
+            "normal_value": 0.0,
+            "triggered_value": 0.0
+        },
+        "ao(1,3)": {
+            "name": "ao(1,3)",
+            "tag": "analog output",
+            "username": "ao(1,3)",
+            "normal_value": 0.0,
+            "triggered_value": 0.0
+        },
+        "pwm(1,0)": {
+            "name": "pwm(1,0)",
+            "tag": "pwm output",
+            "username": "pwm(1,0)",
+            "normal_value": 0.0,
+            "triggered_value": 0.0
+        },
+        "pwm(1,1)": {
+            "name": "pwm(1,1)",
+            "tag": "pwm output",
+            "username": "pwm(1,1)",
+            "normal_value": 0.0,
+            "triggered_value": 0.0
+        }
+    },
+    "inputs": {
+        "pres(0-port0,1)": {
+            "name": "pres(0-port0,1)",
+            "tag": "Lithium",
+            "username": "Main Chamber pressure",
+            "triggers": []
+        },
+        "pres(0-port0,2)": {
+            "name": "pres(0-port0,2)",
+            "tag": "pressure",
+            "username": "pres(0-port0,2)",
+            "triggers": []
+        },
+        "temp(2,1)": {
+            "name": "temp(2,1)",
+            "tag": "temperature",
+            "username": "temp(2,1)",
+            "triggers": []
+        },
+        "temp(2,2)": {
+            "name": "temp(2,2)",
+            "tag": "Lithium",
+            "username": "spectro cell",
+            "triggers": [
+                {
+                    "mode": "greater than",
+                    "value": 400.0,
+                    "triggered": false
+                }
+            ]
+        },
+        "temp(2,3)": {
+            "name": "temp(2,3)",
+            "tag": "temperature",
+            "username": "temp(2,3)",
+            "triggers": []
+        },
+        "temp(2,4)": {
+            "name": "temp(2,4)",
+            "tag": "temperature",
+            "username": "temp(2,4)",
+            "triggers": []
+        },
+        "temp(2,5)": {
+            "name": "temp(2,5)",
+            "tag": "temperature",
+            "username": "temp(2,5)",
+            "triggers": []
+        },
+        "temp(2,6)": {
+            "name": "temp(2,6)",
+            "tag": "temperature",
+            "username": "temp(2,6)",
+            "triggers": []
+        },
+        "temp(2,7)": {
+            "name": "temp(2,7)",
+            "tag": "temperature",
+            "username": "temp(2,7)",
+            "triggers": []
+        },
+        "temp(2,8)": {
+            "name": "temp(2,8)",
+            "tag": "Lithium",
+            "username": "Li oven",
+            "triggers": [
+                {
+                    "mode": "greater than",
+                    "value": 350.0,
+                    "triggered": false
+                }
+            ]
+        },
+        "temp(2,9)": {
+            "name": "temp(2,9)",
+            "tag": "Environment",
+            "username": "Cooling water",
+            "triggers": []
+        },
+        "temp(2,10)": {
+            "name": "temp(2,10)",
+            "tag": "Environment",
+            "username": "Laser table",
+            "triggers": []
+        },
+        "temp(2,11)": {
+            "name": "temp(2,11)",
+            "tag": "Environment",
+            "username": "Atom table",
+            "triggers": []
+        },
+        "di(0,0)": {
+            "name": "di(0,0)",
+            "tag": "digital input",
+            "username": "di(0,0)",
+            "triggers": []
+        },
+        "di(0,1)": {
+            "name": "di(0,1)",
+            "tag": "digital input",
+            "username": "di(0,1)",
+            "triggers": []
+        },
+        "di(0,2)": {
+            "name": "di(0,2)",
+            "tag": "digital input",
+            "username": "di(0,2)",
+            "triggers": []
+        },
+        "di(0,3)": {
+            "name": "di(0,3)",
+            "tag": "digital input",
+            "username": "di(0,3)",
+            "triggers": []
+        },
+        "di(0,4)": {
+            "name": "di(0,4)",
+            "tag": "digital input",
+            "username": "di(0,4)",
+            "triggers": []
+        },
+        "di(0,5)": {
+            "name": "di(0,5)",
+            "tag": "digital input",
+            "username": "di(0,5)",
+            "triggers": []
+        },
+        "di(0,6)": {
+            "name": "di(0,6)",
+            "tag": "digital input",
+            "username": "di(0,6)",
+            "triggers": []
+        },
+        "di(0,7)": {
+            "name": "di(0,7)",
+            "tag": "digital input",
+            "username": "di(0,7)",
+            "triggers": []
+        },
+        "ai(0,0)": {
+            "name": "ai(0,0)",
+            "tag": "analog input",
+            "username": "ai(0,0)",
+            "triggers": []
+        },
+        "ai(0,1)": {
+            "name": "ai(0,1)",
+            "tag": "analog input",
+            "username": "ai(0,1)",
+            "triggers": []
+        },
+        "ai(0,2)": {
+            "name": "ai(0,2)",
+            "tag": "analog input",
+            "username": "ai(0,2)",
+            "triggers": []
+        },
+        "ai(0,3)": {
+            "name": "ai(0,3)",
+            "tag": "analog input",
+            "username": "ai(0,3)",
+            "triggers": []
+        },
+        "ai(0,4)": {
+            "name": "ai(0,4)",
+            "tag": "analog input",
+            "username": "ai(0,4)",
+            "triggers": []
+        },
+        "ai(0,5)": {
+            "name": "ai(0,5)",
+            "tag": "analog input",
+            "username": "ai(0,5)",
+            "triggers": []
+        },
+        "ai(0,6)": {
+            "name": "ai(0,6)",
+            "tag": "analog input",
+            "username": "ai(0,6)",
+            "triggers": []
+        },
+        "ai(0,7)": {
+            "name": "ai(0,7)",
+            "tag": "analog input",
+            "username": "ai(0,7)",
+            "triggers": []
+        },
+        "di(1,0)": {
+            "name": "di(1,0)",
+            "tag": "Water",
+            "username": "MOT coil cooling",
+            "triggers": []
+        },
+        "di(1,1)": {
+            "name": "di(1,1)",
+            "tag": "Water",
+            "username": "Zeeman slower cooling",
+            "triggers": [
+                {
+                    "mode": "False",
+                    "value": null,
+                    "triggered": false
+                }
+            ]
+        },
+        "di(1,2)": {
+            "name": "di(1,2)",
+            "tag": "Water",
+            "username": "RF cooling plate",
+            "triggers": [
+                {
+                    "mode": "False",
+                    "value": null,
+                    "triggered": false
+                }
+            ]
+        },
+        "di(1,3)": {
+            "name": "di(1,3)",
+            "tag": "Water",
+            "username": "unused",
+            "triggers": []
+        },
+        "di(1,4)": {
+            "name": "di(1,4)",
+            "tag": "digital input",
+            "username": "di(1,4)",
+            "triggers": []
+        },
+        "di(1,5)": {
+            "name": "di(1,5)",
+            "tag": "digital input",
+            "username": "di(1,5)",
+            "triggers": []
+        },
+        "di(1,6)": {
+            "name": "di(1,6)",
+            "tag": "digital input",
+            "username": "di(1,6)",
+            "triggers": []
+        },
+        "di(1,7)": {
+            "name": "di(1,7)",
+            "tag": "digital input",
+            "username": "di(1,7)",
+            "triggers": []
+        },
+        "ai(1,0)": {
+            "name": "ai(1,0)",
+            "tag": "analog input",
+            "username": "ai(1,0)",
+            "triggers": []
+        },
+        "ai(1,1)": {
+            "name": "ai(1,1)",
+            "tag": "analog input",
+            "username": "ai(1,1)",
+            "triggers": []
+        },
+        "ai(1,2)": {
+            "name": "ai(1,2)",
+            "tag": "analog input",
+            "username": "ai(1,2)",
+            "triggers": []
+        },
+        "ai(1,3)": {
+            "name": "ai(1,3)",
+            "tag": "analog input",
+            "username": "ai(1,3)",
+            "triggers": []
+        },
+        "ai(1,4)": {
+            "name": "ai(1,4)",
+            "tag": "analog input",
+            "username": "ai(1,4)",
+            "triggers": []
+        },
+        "ai(1,5)": {
+            "name": "ai(1,5)",
+            "tag": "analog input",
+            "username": "ai(1,5)",
+            "triggers": []
+        },
+        "ai(1,6)": {
+            "name": "ai(1,6)",
+            "tag": "analog input",
+            "username": "ai(1,6)",
+            "triggers": []
+        },
+        "ai(1,7)": {
+            "name": "ai(1,7)",
+            "tag": "analog input",
+            "username": "ai(1,7)",
+            "triggers": []
+        }
+    },
+    "comment": ""
+}

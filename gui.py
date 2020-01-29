@@ -503,7 +503,7 @@ class TagList(gui.VBox):
         logger.info('reload')
         self.update_tags()
         self.empty()
-        for tag in self.tags:
+        for tag in sorted(list(self.tags)):
             self.append(gui.VBox(width = '100%'), tag)
             self.children[tag].append(gui.Label(tag, width = '100%'), 'tag')
             self.children[tag].children['tag'].style['text-align'] = 'left'
@@ -757,7 +757,7 @@ class OutputGUI(gui.HBox):
             self.triggered_value.style['text-align'] = 'right'
             self.triggered_value_cont.append(self.triggered_value)
 
-            edit_button = EditText(self.output.get_triggered_value, self.set_triggered_value, 'triggered_value')
+            edit_button = EditFloat(self.output.get_triggered_value, self.set_triggered_value, 'triggered_value')
             self.triggered_value_cont.append(edit_button)
             
             self.append(self.triggered_value_cont)
@@ -768,7 +768,7 @@ class OutputGUI(gui.HBox):
             self.update_value()
             self.value_cont.append(self.value)
             
-            edit_button = EditText(self.output.get_value, self.set_value, 'value')
+            edit_button = EditFloat(self.output.get_value, self.set_value, 'value')
             self.value_cont.append(edit_button)
             
             self.append(self.value_cont)
