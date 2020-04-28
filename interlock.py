@@ -487,6 +487,11 @@ class Interlock:
             output.trigger()
         self.status()
     
+    def set_heartbeat(self, hb_output):
+        
+        self.heartbeat = hb_output
+        self.heartbeat_connected = True
+    
     def reset(self):
         if self.triggered:
             self.triggered = False
@@ -518,6 +523,7 @@ class Interlock:
     def loop(self):
         try:
             while self.running:
+                t = time.time()
                 to_trig = False
                 for inp in self.inputs.values():
                     to_trig = to_trig or inp.check_triggers()
@@ -533,18 +539,32 @@ class Interlock:
                     else:
                         logger.info('state:ok')
                 self.status()
-                time.sleep(1/self.rate)
+                if self.heartbeat_connected:
+                    self.swap_heartbeat()
+                    
+                time_passed = time.time()-t
+                if 1/self.rate - time_passed > 0:
+                    time.sleep(1/self.rate - time_passed)
+                else:
+                    max_rate = 1/time_passed
+                    logger.info(f'rate of {self.rate:2f} could not be reached. Best rate: {max_rate}')
                 
         except KeyboardInterrupt:
             raise
         except Exception as e:
-            logger.error('Connection with influxdb failed in ', str(self))
+            logger.error('Fatal error in Interlock loop!!! ', str(self))
             logger.error(e, exc_info=True)
+            self.running = False
             self.trigger()
             self.status()
+            
+    def swap_heartbeat(self):
+        if self.heartbeat.get_value():
+            self.heartbeat.set_value(False)
+        else:
+            self.heartbeat.set_value(True)
     
     def add_gui(self,interlock_app):
-        
         self.interlock_app = interlock_app
         self.gui = True
         logger.info('interlock gui connected to interlock')

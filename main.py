@@ -24,6 +24,12 @@ interlock = Interlock(pres_ins+temp_ins+daqc1_ins+daqc2_ins,daqc1_outs + daqc2_o
 config_folder = '/home/pi/Interlock/QuEMS_interlock/configs'
 interlock.load_config(config_folder+'/startup.iconf')
 
+for output in daqc2_outs:
+    if output.name == 'do(1,0)':
+        hb_ouput = output
+        break
+interlock.set_heartbeat(output)
+
 interlock.run()
 interlock.reset()
 

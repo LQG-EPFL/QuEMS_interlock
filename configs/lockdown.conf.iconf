@@ -6,28 +6,28 @@
             "name": "do(0,0)",
             "tag": "digital output",
             "username": "do(0,0)",
-            "normal_value": false,
+            "normal_value": true,
             "triggered_value": false
         },
         "do(0,1)": {
             "name": "do(0,1)",
             "tag": "digital output",
             "username": "do(0,1)",
-            "normal_value": false,
+            "normal_value": true,
             "triggered_value": false
         },
         "do(0,2)": {
             "name": "do(0,2)",
             "tag": "digital output",
             "username": "do(0,2)",
-            "normal_value": false,
+            "normal_value": true,
             "triggered_value": false
         },
         "do(0,3)": {
             "name": "do(0,3)",
             "tag": "digital output",
             "username": "do(0,3)",
-            "normal_value": false,
+            "normal_value": true,
             "triggered_value": false
         },
         "do(0,4)": {
@@ -396,25 +396,13 @@
             "name": "di(1,1)",
             "tag": "Water",
             "username": "Zeeman slower cooling",
-            "triggers": [
-                {
-                    "mode": "False",
-                    "value": null,
-                    "triggered": false
-                }
-            ]
+            "triggers": []
         },
         "di(1,2)": {
             "name": "di(1,2)",
             "tag": "Water",
             "username": "RF cooling plate",
-            "triggers": [
-                {
-                    "mode": "False",
-                    "value": null,
-                    "triggered": false
-                }
-            ]
+            "triggers": []
         },
         "di(1,3)": {
             "name": "di(1,3)",
