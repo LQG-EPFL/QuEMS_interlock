@@ -1,16 +1,13 @@
 import time
 from datetime import datetime
-
 import logging
-logger = logging.getLogger('interlock')
 import sys
-
-import timeout_decorator
-
 import json
 
+logger = logging.getLogger('interlock')
+
 from influxdb import InfluxDBClient
-dbClient = InfluxDBClient('192.168.0.1', 8086, 'root', 'root', 'mydb')
+dbClient = InfluxDBClient('localhost', 8086, 'root', 'root', 'mydb', timeout = 0.1)
 
 class Trigger:
     def __init__(self, inp, mode, value):
@@ -121,7 +118,7 @@ class Trigger:
         self.triggered = config['triggered']
                
 class Input:
-    def __init__(self, read, name, value_type, username = None, tag = 'murks'):
+    def __init__(self, read, name, value_type, username = None, tag = 'no tag'):
         '''
         read: read function
         name: str that identifies what this input refers to, for example ADC 0 0 for 0th ADC of 0th DAQ plate 
@@ -248,7 +245,7 @@ class Input:
             self.add_trigger(trig_conf['mode'], trig_conf['value'])
                                      
 class Output:
-    def __init__(self, write, name, value_type, initial_value, normal_value, triggered_value, username = None, tag = 'murks'):
+    def __init__(self, write, name, value_type, initial_value, normal_value, triggered_value, username = None, tag = 'no tag'):
         '''
         read: read function
         name: str that identifies what this input refers to, for example ADC 0 0 for 0th ADC of 0th DAQ plate 
@@ -259,17 +256,24 @@ class Output:
         self.write = write
         self.name = name
         self.value_type = value_type
-        self.triggered_value = triggered_value
-        self.normal_value = normal_value
+        
         self.tag = tag
-        
-        self.set_value(initial_value)
-        self.value_before_trigger = initial_value
-        
-        
-        
+
         if username == None:
             self.username = name
+        
+        if value_type == 'float':
+            self.triggered_value = float(triggered_value)
+            self.normal_value = float(normal_value)
+            self.value_before_trigger = float(initial_value)
+            
+        if value_type == 'bool':
+            self.triggered_value = boolean(triggered_value)
+            self.normal_value = boolean(normal_value)
+            self.value_before_trigger = boolean(initial_value)
+        
+        self.set_value(initial_value)
+
     
     def status(self):
         
@@ -309,6 +313,12 @@ class Output:
         return self.username
         
     def set_value(self, value):
+    
+        if self.value_type == 'float':
+            value = float(value)
+        if self.value_type == 'bool':
+            value = boolean(value)
+    
         self.value = value
         try:
             self.write(self.value)
@@ -384,6 +394,7 @@ class Output:
 import traceback
 class Interlock:
     def __init__(self, inputs, outputs, rate = 1):
+        self.loop_time = 0.
         
         self.inputs = {input.name: input for input in inputs}
         
@@ -399,9 +410,12 @@ class Interlock:
         self.rate = rate
         
         self.gui = False
+        self.heartbeat_connected = False
         
         
         self.trigger()
+        
+        
     
     def get_input_tags(self):
         tags = set([])
@@ -450,6 +464,29 @@ class Interlock:
         self.set_config(config)
         
         return config['comment']
+        
+    def get_values(self):
+        values = {}
+        for output in self.outputs.values():
+            values[output.name] = output.get_value()   
+        return values
+            
+    def set_values(self, values):
+        for name, out_val in values.items():
+            if name in self.outputs:
+                self.outputs[name].set_value(out_val)
+        
+        
+    def load_values(self, filename):
+        values = json.load( open( filename) )
+        self.set_values(values)
+        
+        return values['comment']
+        
+    def save_values(self, filename, comment = ''):
+        values = self.get_values()
+        values['comment'] = comment
+        json.dump( values, open( filename, 'w' ) ,indent=4)
     
     def status(self):
         try:
@@ -463,6 +500,7 @@ class Interlock:
                   "running" : self.running,
                   "rate": self.rate,
                   "triggered": self.triggered,
+                  "loop_time": self.loop_time,
               }
           }
         ]
@@ -481,6 +519,7 @@ class Interlock:
             except Exception as e:
                 logger.error('Interlock failed to refesh gui')
                 logger.error(e, exc_info=True)
+                
     def trigger(self):
         self.triggered = True
         for output in self.outputs.values():
@@ -543,6 +582,7 @@ class Interlock:
                     self.swap_heartbeat()
                     
                 time_passed = time.time()-t
+                self.loop_time = time_passed
                 if 1/self.rate - time_passed > 0:
                     time.sleep(1/self.rate - time_passed)
                 else:

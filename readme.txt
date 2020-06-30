@@ -3,7 +3,7 @@
 ## install remi
 https://github.com/dddomodossola/remi
 
-pip install timeout-decorator
+pip install influxdb
 
 
 ## install docker

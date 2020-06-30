@@ -300,6 +300,10 @@ class InterlockStatus(gui.VBox):
         
         self.heading_cont.append(self.config_man)
         
+        self.values_man = ValuesManager(self.interlock, self.app)
+        
+        self.heading_cont.append(self.values_man)
+        
         
         
         self.status = gui.VBox()
@@ -420,6 +424,7 @@ class InterlockStatus(gui.VBox):
         
     def reload(self):
         self.refresh()
+        self.values_man.reload()
         
 class TriggerGUI(gui.HBox):
 
@@ -540,12 +545,10 @@ class InputGUI(gui.HBox):
         self.style['width'] = '100%'
         
         self.name = gui.Label(self.input.name, width = '100px')
-        self.name.style['text-align'] = 'right'
         self.append(self.name)
         
         self.username_cont = gui.HBox(width = '200px')
-        self.username = gui.Label(self.input.username, width = '170pt')
-        self.username.style['text-align'] = 'right'
+        self.username = gui.Label(self.input.username, width = '170px')
         self.username_cont.append(self.username)
 
         edit_button = EditUsernameTag(self.input.get_username,
@@ -556,7 +559,7 @@ class InputGUI(gui.HBox):
         self.username_cont.append(edit_button)
         self.append(self.username_cont)
         
-        self.current_value = gui.Label(width = '50pt')
+        self.current_value = gui.Label(width = '100px')
         self.current_value.style['text-align'] = 'center'
         self.update_value()
         
@@ -632,14 +635,35 @@ class InputGUI(gui.HBox):
         triggerhbox.append(remove_trigger_button)
 
         remove_trigger_button.triggergui_key = self.triggers_cont.append(triggerhbox)
-        remove_trigger_button.onclick.do(self.remove_trigger)
+        remove_trigger_button.onclick.do(self.remove_trigger_soft)
     
-    
-    def remove_trigger(self, widget):
-        self.input.triggers.remove(widget.trigger)
-
-        self.triggers_cont.remove_child(self.triggers_cont.children[widget.triggergui_key])
-                
+    def remove_trigger_soft(self, widget):
+        
+        
+        
+        
+        
+        
+        check_dialog = GenericDialog(title='Are you sure?')
+        self.append(check_dialog)
+        check_dialog.trigger = widget.trigger
+        check_dialog.triggergui_key = widget.triggergui_key
+        
+        def remove(widget):
+            self.remove_trigger_hard(widget)
+            self.remove_child(check_dialog)
+            
+        def undo(widget):
+            self.remove_child(check_dialog)
+        
+        check_dialog.set_on_confirm_dialog_listener(remove)
+        check_dialog.set_on_cancel_dialog_listener(undo)
+        
+        
+    def remove_trigger_hard(self,widget):
+            self.input.triggers.remove(widget.trigger)
+            self.triggers_cont.remove_child(self.triggers_cont.children[widget.triggergui_key])
+             
     def set_username(self, username):
         self.username.text = username
         self.input.set_username(username)
@@ -648,7 +672,7 @@ class InputGUI(gui.HBox):
         
         value = self.input.last_value
         if self.input.value_type == 'float':
-            value = np.round(value,2)
+            value = "{:.3e}".format(value)
         
         self.current_value.set_text(str(value))
         
@@ -690,6 +714,13 @@ class InputsExplorer(gui.VBox):
         self.heading.style['font-size'] = '20pt'
         
         self.append(self.heading)
+
+        self.column_label = gui.HBox([gui.Label('Name', width='100px'),
+                                      gui.Label('Username', width='200px'),
+                                      gui.Label('Normal value', width='100px'),
+                                      gui.Label('List of Tiggers', width='60%'),
+                                      gui.Label('', width='40px')], width='100%')
+        self.append(self.column_label)
         
         inputguis = [InputGUI(inp, app) for inp in interlock.inputs.values()]
         self.inputs_cont = TagList(inputguis, width = '100%')
@@ -726,8 +757,7 @@ class OutputGUI(gui.HBox):
         self.append(self.name)
         
         self.username_cont = gui.HBox(width = '200px')
-        self.username = gui.Label(self.output.username, width = '170pt')
-        self.username.style['text-align'] = 'right'
+        self.username = gui.Label(self.output.username, width = '170px')
         self.username_cont.append(self.username)
 
         edit_button = EditUsernameTag(self.output.get_username,
@@ -741,8 +771,8 @@ class OutputGUI(gui.HBox):
         self.append(self.username_cont)
         
         if self.output.value_type == 'float':
-            self.normal_value_cont = gui.HBox(width = '100px')
-            self.normal_value = gui.Label(str(self.output.normal_value), width = '60px')
+            self.normal_value_cont = gui.HBox(width = '120px')
+            self.normal_value = gui.Label("{:.3e}".format(self.output.normal_value), width = '70px')
             self.normal_value.style['text-align'] = 'right'
             self.normal_value_cont.append(self.normal_value)
 
@@ -751,9 +781,9 @@ class OutputGUI(gui.HBox):
             
             self.append(self.normal_value_cont)
             
-            self.triggered_value_cont = gui.HBox(width = '100px')
+            self.triggered_value_cont = gui.HBox(width = '120px')
             
-            self.triggered_value = gui.Label(str(self.output.triggered_value), width = '60px')
+            self.triggered_value = gui.Label("{:.3e}".format(self.output.triggered_value), width = '70px')
             self.triggered_value.style['text-align'] = 'right'
             self.triggered_value_cont.append(self.triggered_value)
 
@@ -762,8 +792,8 @@ class OutputGUI(gui.HBox):
             
             self.append(self.triggered_value_cont)
             
-            self.value_cont = gui.HBox(width = '100px')
-            self.value = gui.Label(width = '60px')
+            self.value_cont = gui.HBox(width = '120px')
+            self.value = gui.Label(width = '70px')
             self.value.style['text-align'] = 'right'
             self.update_value()
             self.value_cont.append(self.value)
@@ -774,8 +804,8 @@ class OutputGUI(gui.HBox):
             self.append(self.value_cont)
         
         if self.output.value_type == 'bool':
-            self.normal_value_cont = gui.HBox(width = '100px')
-            self.normal_value = gui.Label(str(self.output.normal_value), width = '60px')
+            self.normal_value_cont = gui.HBox(width = '120px')
+            self.normal_value = gui.Label(str(self.output.normal_value), width = '70px')
             self.normal_value.style['text-align'] = 'right'
             self.normal_value_cont.append(self.normal_value)
 
@@ -784,9 +814,9 @@ class OutputGUI(gui.HBox):
             
             self.append(self.normal_value_cont)
             
-            self.triggered_value_cont = gui.HBox(width = '100px')
+            self.triggered_value_cont = gui.HBox(width = '120px')
             
-            self.triggered_value = gui.Label(str(self.output.triggered_value), width = '60px')
+            self.triggered_value = gui.Label(str(self.output.triggered_value), width = '70px')
             self.triggered_value.style['text-align'] = 'right'
             self.triggered_value_cont.append(self.triggered_value)
 
@@ -795,8 +825,8 @@ class OutputGUI(gui.HBox):
             
             self.append(self.triggered_value_cont)
             
-            self.value_cont = gui.HBox(width = '100px')
-            self.value = gui.Label(width = '60px')
+            self.value_cont = gui.HBox(width = '120px')
+            self.value = gui.Label(width = '70px')
             self.value.style['text-align'] = 'right'
             self.update_value()
             self.value_cont.append(self.value)
@@ -806,18 +836,18 @@ class OutputGUI(gui.HBox):
             
             self.append(self.value_cont)
         
-        self.bt_set_to_normal = gui.Button('set normal')
-        self.bt_set_to_normal.style['padding'] = '2pt'
+        self.bt_set_to_normal = gui.Button('set normal', width = '100px')
+        self.bt_set_to_normal.style['padding'] = '4pt'
         self.bt_set_to_normal.onclick.do(self.set_to_normal)
         self.append(self.bt_set_to_normal)
         
-        self.bt_set_to_triggered = gui.Button('set triggered')
-        self.bt_set_to_triggered.style['padding'] = '2pt'
+        self.bt_set_to_triggered = gui.Button('set triggered',width = '100px')
+        self.bt_set_to_triggered.style['padding'] = '4pt'
         self.bt_set_to_triggered.onclick.do(self.set_to_triggered)
         self.append(self.bt_set_to_triggered)
     
     def update_value(self):
-        self.value.set_text(str(self.output.get_value()))
+        self.value.set_text("{:.3e}".format(self.output.get_value()))
     
     def set_to_normal(self, widget):
         self.output.set_to_normal_value()
@@ -835,23 +865,23 @@ class OutputGUI(gui.HBox):
         self.output.set_username(username)
         
     def set_normal_value(self, normal_value):
-        self.normal_value.text = str(normal_value)  
+        self.normal_value.text = "{:.3e}".format(normal_value)
         self.output.set_normal_value(normal_value)
     
     def set_triggered_value(self, triggered_value):
-        self.triggered_value.text = str(triggered_value)  
+        self.triggered_value.text = "{:.3e}".format(triggered_value)
         self.output.set_triggered_value(triggered_value)
         
     def set_value(self, value):
-        self.value.text = str(value)  
+        self.value.text = "{:.3e}".format(value)
         self.output.set_value(value)
         
     def refresh(self):
         self.update_value()
         
         self.username.set_text(self.output.username)
-        self.normal_value.set_text(str(self.output.normal_value))
-        self.triggered_value.set_text(str(self.output.triggered_value))
+        self.normal_value.set_text("{:.3e}".format(self.output.normal_value))
+        self.triggered_value.set_text("{:.3e}".format(self.output.triggered_value))
         
     def reload(self):
         self.refresh()
@@ -876,7 +906,15 @@ class OutputsExplorer(gui.VBox):
         self.heading.style['font-size'] = '20pt'
         
         self.append(self.heading)
-        
+
+        self.column_label = gui.HBox([gui.Label('Name', width = '100px'),
+                                      gui.Label('Username', width = '200px'),
+                                      gui.Label('Normal value', width = '120px'),
+                                      gui.Label('Triggered value', width = '120px'),
+                                      gui.Label('Current value', width = '120px'),
+                                      gui.Label('', width = '100px'),
+                                      gui.Label('', width = '100px'),], width = '100%')
+        self.append(self.column_label)
         outputguis = [OutputGUI(out, self.app) for out in interlock.outputs.values()]
         self.outputs_cont = TagList(outputguis)
         
@@ -1146,6 +1184,53 @@ class ConfigSaveDialog(gui.GenericDialog):
     @gui.decorate_explicit_alias_for_listener_registration
     def set_on_confirm_value_listener(self, callback, *userdata):
         self.confirm_value.connect(callback, *userdata)
+        
+class ValuesSaveDialog(gui.GenericDialog):
+    """file selection dialog, it opens a new webpage allows the OK/CANCEL functionality
+    implementing the "confirm_value" and "cancel_dialog" events."""
+
+    def __init__(self, title='Save Values', message='Select file to overwrite or got folder where to save',selection_folder='.', **kwargs):
+        super(ValuesSaveDialog, self).__init__(title, message, **kwargs)
+
+        self.css_width = '475px'
+        self.fileFolderNavigator = gui.FileFolderNavigator(False, selection_folder,
+                                                       True,
+                                                       False)
+        self.add_field('fileFolderNavigator', self.fileFolderNavigator)
+        
+        self.filename = gui.TextInput(initial_value = 'filename')
+        
+        self.add_field_with_label('filename','filename', self.filename)
+        
+        self.confirm_dialog.connect(self.confirm_value)
+    
+    def get_filename(self):
+        file = self.fileFolderNavigator.get_selection_list()
+        
+        if len(file):
+            return file[0]
+        filename = self.filename.get_text()
+        
+        if not filename:
+            import time
+            filename = 'no_name_'+time.strftime("%Y%m%d-%H%M%S")
+        
+        return os.path.join(self.fileFolderNavigator._last_valid_path, filename+'.ival')
+        
+    @gui.decorate_set_on_listener("(self, emitter, fileList)")
+    @gui.decorate_event
+    def confirm_value(self, widget):
+        """event called pressing on OK button.
+           propagates the string content of the input field
+        """
+        self.hide()
+        params = (self.fileFolderNavigator.get_selection_list(),)
+        return params
+
+    @gui.decorate_explicit_alias_for_listener_registration
+    def set_on_confirm_value_listener(self, callback, *userdata):
+        self.confirm_value.connect(callback, *userdata)
+        
 class ConfigManager(gui.Container):
 
     def __init__(self, interlock, app, *args, **kwargs):
@@ -1159,7 +1244,9 @@ class ConfigManager(gui.Container):
         self.set_layout_orientation(gui.Container.LAYOUT_VERTICAL)
         self.interlock = interlock
         self.app = app
-    
+        
+        self.append(gui.Label('Config Manager'))
+        
         self.bt_save_config = gui.Image('/images:save.ico', height=30, margin = '5pt')
         self.bt_save_config.onclick.do(self.save_config)
         
@@ -1224,19 +1311,102 @@ class ConfigManager(gui.Container):
             self.dialog_cont.append(gui.Label('Config loaded correctly, comment: '+comment))
         else:
             self.dialog_cont.append(gui.Label('No file was selected'))
-            
+
+class ValuesManager(gui.Container):
+
+    def __init__(self, interlock, app, *args, **kwargs):
+        super(ValuesManager, self).__init__(*args, **kwargs)
+        self.style.update({'width': '200pt', 'overflow':'hidden', 'justify-content': 'center'})
+        #self.style['border-radius'] = '25px'
+        #self.style['margin-top'] = '1em'
+        #self.style['padding-top'] = '1em'
+        #self.style['margin-bottom'] = '1em'
+        #self.style['padding-bottom'] = '1em'
+        self.set_layout_orientation(gui.Container.LAYOUT_VERTICAL)
+        self.interlock = interlock
+        self.app = app
         
+        self.append(gui.Label('Values Manager'))
+        
+        self.bt_save_values = gui.Image('/images:save.ico', height=30, margin = '5pt')
+        self.bt_save_values.onclick.do(self.save_values)
+        
+        self.append(self.bt_save_values)
+        
+        self.bt_reload = gui.Button(text = 'reload')
+        self.bt_reload.onclick.connect(self.reload)
+        self.append(self.bt_reload)
+        self.dialog_cont = gui.Container()
+        
+        self.append(self.dialog_cont)
+        
+        self.values_buttons = gui.Container()
+        self.append(self.values_buttons)
+        self.make_values_list()
+        
+        
+    def make_values_list(self):
+        
+        self.values_buttons.empty()
+        
+        for filename in os.listdir(self.app.values_folder):
+            if filename.endswith(".ival"):
+                bt = gui.Button(text = filename.split('.')[0], margin = '2pt')
+                bt.filename = filename
+                bt.onclick.connect(self.load_values)
+                
+                self.values_buttons.append(bt)
+    
+    def reload(self, widget = None):
+        self.make_values_list()
+        
+    
+    def load_values(self, button):
+        self.interlock.load_values(os.path.join(self.app.values_folder,button.filename))
+        self.app.reload()
+        self.reload()
+    
+    def save_values(self, widget = None):
+        self.dialog_cont.empty()
+        config = self.interlock.get_config()
+        
+        self.comment = TextInputDialog(title = 'Save values', message = 'Enter comment')
+        self.dialog_cont.append(self.comment)
+
+        self.comment.set_on_cancel_dialog_listener(self.cancel)
+        self.comment.set_on_confirm_dialog_listener(self.launch_file_explorer_save)
+    
+    def launch_file_explorer_save(self, widget):
+        self.dialog_cont.empty()
+        
+        self.fileexplorer = ValuesSaveDialog(multiple_selection = False,selection_folder=self.app.values_folder )
+        
+        self.fileexplorer.set_on_cancel_dialog_listener(self.cancel)
+        self.fileexplorer.set_on_confirm_dialog_listener(self.save_file)
+        
+        self.fileexplorer.show(self.app)
+        
+    def cancel(self, widget = None):
+        self.dialog_cont.empty()
+    
+    def save_file(self, widget = None):
+        filename = self.fileexplorer.get_filename()
+        comment = self.comment.inputText.get_text()
+        self.interlock.save_values(filename, comment = comment)
+        self.dialog_cont.append(gui.Label('File saved to '+('...'+filename[-35:]) if len(filename) > 35 else filename))
         
 class QuEMS_Interlock(App):
     def __init__(self, *args):
         images_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'images')
         super(QuEMS_Interlock, self).__init__(*args, static_file_path={'images':images_path})
 
-    def main(self, interlock, config_folder = '.'):
+    def main(self, interlock, config_folder = '.', values_folder = '.'):
         
         self.interlock = interlock
         
         self.config_folder = config_folder
+        
+        self.values_folder = values_folder
         
         self.interlock.add_gui(self)
         
@@ -1293,3 +1463,5 @@ class QuEMS_Interlock(App):
 
 
 
+    
+    
