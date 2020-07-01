@@ -42,3 +42,11 @@ Add the following line to contab -e:
 
 @reboot sh /home/pi/launch_interlock.sh >/home/pi/logs/cronlog 2>&1
 
+To state the pi in kiosk mode add:
+
+@xset s off
+@xset -dpms
+@xset s noblank
+@chromium-browser --kiosk http://localhost:10000
+
+to .config\lxsession\LXDE-pi\autostart
