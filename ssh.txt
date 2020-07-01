@@ -1,0 +1,2 @@
+ssh pi@interlock-pi (IP is 192.168.0.4 today June 2nd 2020)
+pwd : ManipeEPFL2018

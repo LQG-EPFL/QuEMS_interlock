@@ -35,3 +35,10 @@ if docker stopped it can be restarted with docker restart container
 netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=10000 connectaddress=192.168.0.4 connectport=10000
 ```
 Make sure that you have made all the firewall exceptions for port 3000 (influxdb), 10000 (QuEMS_interlock), 8086 (Grafana).
+
+## Setup of launcher on rasperry pi
+
+Add the following line to contab -e:
+
+@reboot sh /home/pi/launch_interlock.sh >/home/pi/logs/cronlog 2>&1
+
