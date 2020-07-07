@@ -847,7 +847,10 @@ class OutputGUI(gui.HBox):
         self.append(self.bt_set_to_triggered)
     
     def update_value(self):
-        self.value.set_text("{:.3e}".format(self.output.get_value()))
+        if self.output.value_type == 'float':
+            self.value.set_text("{:.3e}".format(self.output.get_value()))
+        if self.output.value_type == 'bool':
+            self.value.set_text(str(self.output.get_value()))
     
     def set_to_normal(self, widget):
         self.output.set_to_normal_value()
@@ -865,23 +868,36 @@ class OutputGUI(gui.HBox):
         self.output.set_username(username)
         
     def set_normal_value(self, normal_value):
-        self.normal_value.text = "{:.3e}".format(normal_value)
+        if self.output.value_type == 'float':
+            self.normal_value.text = "{:.3e}".format(normal_value)
+        if self.output.value_type == 'bool':
+            self.normal_value.text = str(normal_value)
         self.output.set_normal_value(normal_value)
     
     def set_triggered_value(self, triggered_value):
-        self.triggered_value.text = "{:.3e}".format(triggered_value)
+        if self.output.value_type == 'float':
+            self.triggered_value.text = "{:.3e}".format(triggered_value)
+        if self.output.value_type == 'bool':
+            self.triggered_value.text = str(triggered_value)
         self.output.set_triggered_value(triggered_value)
         
     def set_value(self, value):
-        self.value.text = "{:.3e}".format(value)
+        if self.output.value_type == 'float':
+            self.value.text = "{:.3e}".format(value)
+        if self.output.value_type == 'bool':
+            self.value.text = str(value)
         self.output.set_value(value)
         
     def refresh(self):
         self.update_value()
         
         self.username.set_text(self.output.username)
-        self.normal_value.set_text("{:.3e}".format(self.output.normal_value))
-        self.triggered_value.set_text("{:.3e}".format(self.output.triggered_value))
+        if self.output.value_type == 'float':
+            self.normal_value.set_text("{:.3e}".format(self.output.normal_value))
+            self.triggered_value.set_text("{:.3e}".format(self.output.triggered_value))
+        if self.output.value_type == 'bool':
+            self.normal_value.set_text(str(self.output.normal_value))
+            self.triggered_value.set_text(str(self.output.triggered_value))           
         
     def reload(self):
         self.refresh()
