@@ -268,9 +268,9 @@ class Output:
             self.value_before_trigger = float(initial_value)
             
         if value_type == 'bool':
-            self.triggered_value = boolean(triggered_value)
-            self.normal_value = boolean(normal_value)
-            self.value_before_trigger = boolean(initial_value)
+            self.triggered_value = bool(triggered_value)
+            self.normal_value = bool(normal_value)
+            self.value_before_trigger = bool(initial_value)
         
         self.set_value(initial_value)
 
@@ -317,7 +317,7 @@ class Output:
         if self.value_type == 'float':
             value = float(value)
         if self.value_type == 'bool':
-            value = boolean(value)
+            value = bool(value)
     
         self.value = value
         try:
