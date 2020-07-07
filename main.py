@@ -31,8 +31,8 @@ daqc2_ins, daqc2_outs = make_DAQCplate(1)
 interlock = Interlock(pres_ins+temp_ins+daqc1_ins+daqc2_ins,daqc1_outs + daqc2_outs)   
 
 #load old configuration
-config_folder = './configs'
-values_folder = './values'
+config_folder = '/home/pi/QuEMS_interlock/configs'
+values_folder = '/home/pi/QuEMS_interlock/values'
 if load_config:
     interlock.load_config(config_folder+'/startup.iconf')
 

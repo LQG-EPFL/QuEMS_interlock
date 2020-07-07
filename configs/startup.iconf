@@ -109,8 +109,8 @@
         },
         "do(1,1)": {
             "name": "do(1,1)",
-            "tag": "digital output",
-            "username": "do(1,1)",
+            "tag": "RF",
+            "username": "24 rf amp",
             "normal_value": false,
             "triggered_value": false
         },
@@ -495,5 +495,5 @@
             "triggers": []
         }
     },
-    "comment": "changed pressure"
+    "comment": ""
 }
