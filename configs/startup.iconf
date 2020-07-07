@@ -208,8 +208,8 @@
         },
         "pres(0-port0,2)": {
             "name": "pres(0-port0,2)",
-            "tag": "pressure",
-            "username": "pres(0-port0,2)",
+            "tag": "Lithium",
+            "username": "Oven chamber",
             "triggers": []
         },
         "temp(2,1)": {
@@ -495,5 +495,5 @@
             "triggers": []
         }
     },
-    "comment": ""
+    "comment": "changed pressure"
 }

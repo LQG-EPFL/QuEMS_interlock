@@ -1,0 +1,8 @@
+{
+    "do(0,4)": true,
+    "do(0,5)": true,
+    "do(0,6)": true,
+    "do(0,7)": true,
+    "do(1,1)": true,
+    "comment": "switch on lasers"
+}
