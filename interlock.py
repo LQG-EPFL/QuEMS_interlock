@@ -7,7 +7,7 @@ import json
 logger = logging.getLogger('interlock')
 
 from influxdb import InfluxDBClient
-dbClient = InfluxDBClient('localhost', 8086, 'root', 'root', 'mydb', timeout = 0.1)
+dbClient = InfluxDBClient('192.168.0.1', 8086, 'root', 'root', 'mydb', timeout = 0.1)
 
 class Trigger:
     def __init__(self, inp, mode, value):

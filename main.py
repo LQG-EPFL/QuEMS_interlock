@@ -8,7 +8,7 @@ logging.basicConfig(stream=sys.stdout, level=logging.WARNING)
 
 logger = logging.getLogger('interlock')
 
-heartbeat = False
+heartbeat = True
 load_config = False
 
 #connect all the devices
