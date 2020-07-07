@@ -1,11 +1,5 @@
 # Install Interlock
 
-## install remi
-https://github.com/dddomodossola/remi
-
-pip install influxdb
-
-
 ## install docker
 ### download influxDB
 docker pull influxdb
@@ -36,17 +30,52 @@ netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=10000 conn
 ```
 Make sure that you have made all the firewall exceptions for port 3000 (influxdb), 10000 (QuEMS_interlock), 8086 (Grafana).
 
+# Setup on rpi
+
+make sure that the rpi has a connection to the internet during the following steps:
+
+## install remi
+git clone https://github.com/dddomodossola/remi
+cd remi
+sudo python3 setup.py install
+
+cd ..
+
+sudo pip3 install influxdb
+
+## clone QuEMS_interlock
+git clone https://c4science.ch/source/QuEMS_interlock.git
+
+
+enable spi as described here:
+https://pi-plates.com/getting_started/
+
+sudo pip3 install pi-plates
+
+sudo pip3 install psutil
+
+
+
+Adjust the code in interlock.py to fit your configuration of influxdb:
+dbClient = InfluxDBClient('192.168.0.1', 8086, 'root', 'root', 'mydb', timeout = 0.1) 
+
+Adjust the main.py for your needs
+
+place your old config files in config
+
+test the interlock by running
+
+python main.py
+
 ## Setup of launcher on rasperry pi
 
+mkdir logs
 Add the following line to contab -e:
 
-@reboot sh /home/pi/launch_interlock.sh >/home/pi/logs/cronlog 2>&1
+@reboot sh /home/pi/QuEMS_interlock/launch_interlock.sh >/home/pi/logs/cronlog 2>&1
 
 To state the pi in kiosk mode add:
 
-@xset s off
-@xset -dpms
-@xset s noblank
 @chromium-browser --kiosk http://localhost:10000
 
-to .config\lxsession\LXDE-pi\autostart
+to /etc/xdg/lxsession/LXDE-pi/autostart
