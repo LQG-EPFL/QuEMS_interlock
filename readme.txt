@@ -68,7 +68,7 @@ mkdir ./logs
 ```
 
 
-Add the following line to contab -e:
+Add the following line to crontab -e:
 
 ```
 @reboot sh /home/pi/QuEMS_interlock/launch_interlock.sh >/home/pi/logs/cronlog 2>&1
