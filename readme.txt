@@ -2,6 +2,27 @@
 
 # Setup on rpi
 
+
+
+## Setup internet in our lab :
+
+this is used to connect to the epfl intranet/internet through the USB network card
+
+```bash
+sudo nano /etc/dhcpcd.conf
+	interface eth1
+	metric 102 #highest priority
+	interface eth1
+	static ip_adress=128.178.76.78/24 #/24 defines the subnet mask as 255.255.255.0
+	static routers=128.178.76.1
+	static domain_name_servers=128.178.15.7
+#save and exit
+sudo systemctl daemon-reload
+sudo systemctl restart dhcpcd
+```
+
+
+
 make sure that the rpi has a connection to the internet during the following steps:
 
 ## install remi
@@ -81,6 +102,15 @@ To state the pi in kiosk mode add:
 ```
 
 to /etc/xdg/lxsession/LXDE-pi/autostart
+
+## Touchscreen setup
+
+If you want to use a touchscreen with the pi you can install the following:
+
+sudo apt-get install at-spi2-core
+sudo apt-get install florence
+
+
 
 # Setup on Data server
 
