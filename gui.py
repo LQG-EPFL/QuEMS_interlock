@@ -1350,6 +1350,7 @@ class ValuesManager(gui.Container):
         self.append(self.bt_save_values)
         
         self.bt_reload = gui.Button(text = 'reload')
+        self.bt_reload.style['padding'] = '4pt'
         self.bt_reload.onclick.connect(self.reload)
         self.append(self.bt_reload)
         self.dialog_cont = gui.Container()
@@ -1368,6 +1369,7 @@ class ValuesManager(gui.Container):
         for filename in os.listdir(self.app.values_folder):
             if filename.endswith(".ival"):
                 bt = gui.Button(text = filename.split('.')[0], margin = '2pt')
+                bt.style['padding'] = '4pt'
                 bt.filename = filename
                 bt.onclick.connect(self.load_values)
                 
