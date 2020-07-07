@@ -98,7 +98,7 @@ Add the following line to crontab -e:
 To state the pi in kiosk mode add:
 
 ```
-@chromium-browser --kiosk http://localhost:10000
+@chromium-browser --start-fullscreen http://localhost:10000
 ```
 
 to /etc/xdg/lxsession/LXDE-pi/autostart
