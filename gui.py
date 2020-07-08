@@ -23,8 +23,6 @@ def read_text(text, app):
   
     # Language in which you want to convert 
     language = 'en'
-    
-    print (text)
     # Passing the text and language to the engine,  
     # here we have marked slow=False. Which tells  
     # the module that the converted audio should  
