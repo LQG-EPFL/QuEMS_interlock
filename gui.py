@@ -1456,7 +1456,7 @@ class ValuesManager(gui.Container):
     def load_values(self, button):
         self.interlock.load_values(os.path.join(self.app.values_folder,button.filename))
         if button.filename == 'day.ival':
-            read_text('Good morning, experimenter! The interlock is a your service!', self.app)
+            read_text('Good morning, experimenter! The interlock is at your service!', self.app)
         if button.filename == 'night.ival':
             read_text('Good night, experimenter! The interlock will care about the experiment while you get your well deserved sleep!', self.app)
         self.app.reload()
