@@ -469,7 +469,7 @@ class TriggerGUI(gui.HBox):
         self.style['border-style'] = 'solid'
         
         self.style['padding'] = '2pt'
-        self.style['width'] = '160pt'
+        self.style['width'] = '200pt'
         
         self.update_border_color()
         
