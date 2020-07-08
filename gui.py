@@ -10,7 +10,7 @@ logger = logging.getLogger('interlock')
 import numpy as np
 
 def read_text(text, app):
-    audio_filename = './audio/speech.mp3'
+    audio_filename = '/home/pi/QuEMS_interlock/audio/speech.mp3'
     # Import the required module for text  
     # to speech conversion 
     from gtts import gTTS 

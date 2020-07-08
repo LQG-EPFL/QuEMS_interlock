@@ -238,8 +238,8 @@
         },
         "temp(2,4)": {
             "name": "temp(2,4)",
-            "tag": "temperature",
-            "username": "temp(2,4)",
+            "tag": "Baking",
+            "username": "Bottom Flange",
             "triggers": []
         },
         "temp(2,5)": {
