@@ -535,7 +535,7 @@ class TriggerGUI(gui.HBox):
             if not self.audio_warned:
                 try:
                     if self.input.value_type == 'float':
-                        read_text('Warning! '+self.input.username+' is '+self.trigger.mode+' '+str(self.trigger.value)+'! The last read value was '+"{:.3e}".format(self.input.last_value)+'.', self.app)
+                        read_text('Warning! '+self.input.username+' is '+self.trigger.mode+' '+str(self.trigger.value)+'! The last read value was '+float_to_string(self.input.last_value)+'.', self.app)
                         
                     if self.input.value_type == 'bool':
                         read_text('Warning! '+self.input.username+' is '+self.trigger.mode+'!', self.app)
@@ -737,7 +737,7 @@ class InputGUI(gui.HBox):
         
         value = self.input.last_value
         if self.input.value_type == 'float':
-            value = "{:.3e}".format(value)
+            value = float_to_string(value)
         
         self.current_value.set_text(str(value))
         
@@ -837,7 +837,7 @@ class OutputGUI(gui.HBox):
         
         if self.output.value_type == 'float':
             self.normal_value_cont = gui.HBox(width = '120px')
-            self.normal_value = gui.Label("{:.3e}".format(self.output.normal_value), width = '70px')
+            self.normal_value = gui.Label(float_to_string(self.output.normal_value), width = '70px')
             self.normal_value.style['text-align'] = 'right'
             self.normal_value_cont.append(self.normal_value)
 
@@ -848,7 +848,7 @@ class OutputGUI(gui.HBox):
             
             self.triggered_value_cont = gui.HBox(width = '120px')
             
-            self.triggered_value = gui.Label("{:.3e}".format(self.output.triggered_value), width = '70px')
+            self.triggered_value = gui.Label(float_to_string(self.output.triggered_value), width = '70px')
             self.triggered_value.style['text-align'] = 'right'
             self.triggered_value_cont.append(self.triggered_value)
 
@@ -913,7 +913,7 @@ class OutputGUI(gui.HBox):
     
     def update_value(self):
         if self.output.value_type == 'float':
-            self.value.set_text("{:.3e}".format(self.output.get_value()))
+            self.value.set_text(float_to_string(self.output.get_value()))
         if self.output.value_type == 'bool':
             self.value.set_text(str(self.output.get_value()))
     
@@ -934,21 +934,21 @@ class OutputGUI(gui.HBox):
         
     def set_normal_value(self, normal_value):
         if self.output.value_type == 'float':
-            self.normal_value.text = "{:.3e}".format(normal_value)
+            self.normal_value.text = float_to_string(normal_value)
         if self.output.value_type == 'bool':
             self.normal_value.text = str(normal_value)
         self.output.set_normal_value(normal_value)
     
     def set_triggered_value(self, triggered_value):
         if self.output.value_type == 'float':
-            self.triggered_value.text = "{:.3e}".format(triggered_value)
+            self.triggered_value.text = float_to_string(triggered_value)
         if self.output.value_type == 'bool':
             self.triggered_value.text = str(triggered_value)
         self.output.set_triggered_value(triggered_value)
         
     def set_value(self, value):
         if self.output.value_type == 'float':
-            self.value.text = "{:.3e}".format(value)
+            self.value.text = float_to_string(value)
         if self.output.value_type == 'bool':
             self.value.text = str(value)
         self.output.set_value(value)
@@ -958,8 +958,8 @@ class OutputGUI(gui.HBox):
         
         self.username.set_text(self.output.username)
         if self.output.value_type == 'float':
-            self.normal_value.set_text("{:.3e}".format(self.output.normal_value))
-            self.triggered_value.set_text("{:.3e}".format(self.output.triggered_value))
+            self.normal_value.set_text(float_to_string(self.output.normal_value))
+            self.triggered_value.set_text(float_to_string(self.output.triggered_value))
         if self.output.value_type == 'bool':
             self.normal_value.set_text(str(self.output.normal_value))
             self.triggered_value.set_text(str(self.output.triggered_value))           
@@ -1123,6 +1123,15 @@ class EditText(Edit):
             
         self.textinput.set_on_cancel_dialog_listener(on_cancel)
         self.textinput.set_on_confirm_dialog_listener(on_confirm)
+
+
+def float_to_string(val, sig = 3):
+    return str(round_sig(val, sig = sig))
+
+def round_sig(x, sig=3):
+    if x == 0:
+        return 0
+    return np.round(x, sig-int(np.floor(np.log10(np.abs(x))))-1)
 
 def isfloat(value):
   try:
