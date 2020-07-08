@@ -9,6 +9,35 @@ logger = logging.getLogger('interlock')
 
 import numpy as np
 
+def read_text(text, app):
+    audio_filename = './audio/speech.mp3'
+    # Import the required module for text  
+    # to speech conversion 
+    from gtts import gTTS 
+  
+    # This module is imported so that we can  
+    # play the converted audio 
+    import os 
+  
+    # The text that you want to convert to audio 
+  
+    # Language in which you want to convert 
+    language = 'en'
+    
+    print (text)
+    # Passing the text and language to the engine,  
+    # here we have marked slow=False. Which tells  
+    # the module that the converted audio should  
+    # have a high speed 
+    myobj = gTTS(text=text, lang=language, slow=False) 
+  
+    # Saving the converted audio in a mp3 file named 
+    #welcome  
+    myobj.save(audio_filename) 
+  
+    
+    app.execute_javascript("(new Audio('%s')).play();"%gui.load_resource(audio_filename))
+
 class GenericDialog(gui.Container):
     """ Generic Dialog widget. It can be customized to create personalized dialog windows.
         You can setup the content adding content widgets with the functions add_field or add_field_with_label.
@@ -342,7 +371,6 @@ class InterlockStatus(gui.VBox):
         
         self.append(self.heading_cont)
         
-        
         ## All interaction buttons
         # starting and stopping botton
 
@@ -359,6 +387,7 @@ class InterlockStatus(gui.VBox):
         self.bt_trigger_untrigger.onclick.connect(self.trigger_untrigger_interlock)
         
         self.update_buttons()
+        
     
     def start_stop_interlock(self, widget):
         if self.interlock.running:
@@ -428,11 +457,15 @@ class InterlockStatus(gui.VBox):
         
 class TriggerGUI(gui.HBox):
 
-    def __init__(self, trigger, *args, **kwargs):
+    def __init__(self, trigger, app, *args, **kwargs):
         super(TriggerGUI, self).__init__(*args, **kwargs)
         
         self.trigger = trigger
         self.input = trigger.input
+        self.app = app
+        
+        self.audio_warned = False
+        
         self.style['border-style'] = 'solid'
         
         self.style['padding'] = '2pt'
@@ -460,12 +493,24 @@ class TriggerGUI(gui.HBox):
         
             self.append(self.edit_mode)
             
+        self.count = gui.Label(str(self.trigger.count), width = '40pt')
+        self.append(self.count)
+        edit_button = EditFloat(self.get_trigger_count, self.set_trigger_count, 'trigger count')
+        self.append(edit_button)
+        
+    def get_trigger_count(self):
+        return self.trigger.trigger_count
+        
+    def set_trigger_count(self, trigger_count):
+        self.trigger.trigger_count = int(trigger_count)
+        
+    
     def set_value(self, value):
         try:
             self.trigger.set_value(value)
         except:
             pass
-        self.value.set_text(str(value))
+        self.value.set_text(str(self.trigger.get_value()))
         
     def get_value(self):
     
@@ -484,11 +529,27 @@ class TriggerGUI(gui.HBox):
     def update_border_color(self):
         if self.trigger.triggered:
             self.style['border-color'] = 'red'
-        else:
-            self.style['border-color'] = 'green'
-    
-    def refresh(self):
         
+        elif self.trigger.count < self.trigger.trigger_count:
+            self.style['border-color'] = 'orange'
+            if not self.audio_warned:
+                try:
+                    if self.input.value_type == 'float':
+                        read_text('Warning! '+self.input.username+' is '+self.trigger.mode+' '+str(self.trigger.value)+'! The last read value was '+"{:.3e}".format(self.input.last_value)+'.', self.app)
+                        
+                    if self.input.value_type == 'bool':
+                        read_text('Warning! '+self.input.username+' is '+self.trigger.mode+'!', self.app)
+                    self.audio_warned = True
+                except:
+                    pass
+        else:
+            self.audio_warned = False
+            self.style['border-color'] = 'green'
+    def update_count(self):
+        self.count.set_text(str(self.trigger.count))
+        
+    def refresh(self):
+        self.update_count()
         self.update_border_color()
 
 class TagList(gui.VBox):
@@ -600,17 +661,21 @@ class InputGUI(gui.HBox):
             
             gd.add_field_with_label('value', 'value', inputvalue)
         
+        input_trigger_count = gui.TextInput()
+        input_trigger_count.set_text('10')
+        gd.add_field_with_label('trigger_count', 'trigger count', input_trigger_count)
+        
         self.append(gd)
         
         def register_trigger(widget):
+            
+            mode = gd.get_field('mode').get_value()
+            trigger_count = int(gd.get_field('trigger_count').get_value())
             if self.input.value_type == 'float':
-                mode = gd.get_field('mode').get_value()
                 value = gd.get_field('value').get_value()
-                trigger = self.input.add_trigger(mode, float(value))
+                trigger = self.input.add_trigger(mode, float(value), trigger_count )
             if self.input.value_type == 'bool':
-                mode = gd.get_field('mode').get_value()
-                trigger = self.input.add_trigger(mode)
-        
+                trigger = self.input.add_trigger(mode, None, trigger_count)
             self.add_triggergui(trigger)
             self.remove_child(gd)
         def undo(widget):
@@ -625,7 +690,7 @@ class InputGUI(gui.HBox):
     def add_triggergui(self, trigger):
         triggerhbox = gui.HBox(width = '200pt')
         
-        triggergui = TriggerGUI(trigger)
+        triggergui = TriggerGUI(trigger, self.app)
         
         triggerhbox.append(triggergui, 'triggergui')
         
@@ -718,7 +783,7 @@ class InputsExplorer(gui.VBox):
         self.column_label = gui.HBox([gui.Label('Name', width='100px'),
                                       gui.Label('Username', width='200px'),
                                       gui.Label('Normal value', width='100px'),
-                                      gui.Label('List of Tiggers', width='60%'),
+                                      gui.Label('List of triggers', width='60%'),
                                       gui.Label('', width='40px')], width='100%')
         self.append(self.column_label)
         
@@ -1416,7 +1481,8 @@ class ValuesManager(gui.Container):
 class QuEMS_Interlock(App):
     def __init__(self, *args):
         images_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'images')
-        super(QuEMS_Interlock, self).__init__(*args, static_file_path={'images':images_path})
+        audio_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'audio')
+        super(QuEMS_Interlock, self).__init__(*args, static_file_path={'images':images_path,'audio':audio_path})
 
     def main(self, interlock, config_folder = '.', values_folder = '.'):
         

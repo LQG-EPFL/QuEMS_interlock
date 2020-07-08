@@ -2,8 +2,6 @@
 
 # Setup on rpi
 
-
-
 ## Setup internet in our lab :
 
 this is used to connect to the epfl intranet/internet through the USB network card
@@ -22,6 +20,8 @@ sudo systemctl restart dhcpcd
 ```
 
 
+
+## Install the necessary python packages
 
 make sure that the rpi has a connection to the internet during the following steps:
 
@@ -52,6 +52,14 @@ sudo pip3 install pi-plates
 
 ```bash
 sudo pip3 install psutil
+```
+
+### install gtts
+
+for speech synthesis install the gtts package
+
+```bash
+sudo pip3 install gtts
 ```
 
 ## clone QuEMS_interlock
@@ -114,15 +122,15 @@ sudo apt-get install florence
 
 # Setup on Data server
 
-## install docker
+install docker from https://www.docker.com/
 
 ### download influxDB
 
-docker pull influxdb
-#make c shared drive of docker
+make c shared drive of docker
 https://stackoverflow.com/questions/56797665/error-response-from-daemon-drive-has-not-been-shared
 
 ```bash
+docker pull influxdb
 docker run -d --name=influxdb -p 8086:8086 --volume "C:/Users/admin/influxdb:/var/lib/influxdb" influxdb
 curl http://localhost:8086/query --data-urlencode 'q=CREATE DATABASE "mydb"'
 ```

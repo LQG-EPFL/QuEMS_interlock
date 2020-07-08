@@ -7,14 +7,16 @@ import json
 logger = logging.getLogger('interlock')
 
 from influxdb import InfluxDBClient
-dbClient = InfluxDBClient('192.168.0.1', 8086, 'root', 'root', 'mydb', timeout = 0.1)
+dbClient = InfluxDBClient('localhost', 8086, 'root', 'root', 'mydb', timeout = 0.1)
 
 class Trigger:
-    def __init__(self, inp, mode, value):
+    def __init__(self, inp, mode, value, trigger_count):
         self.mode = mode
         self.value = value
         self.input = inp
         self.triggered = False
+        self.trigger_count = trigger_count
+        self.count = self.trigger_count
         self.check()
     
     def __repr__(self):
@@ -55,6 +57,8 @@ class Trigger:
                   "trigger if" : self.mode,
                   "value of trigger": self.value,
                   "is triggered": self.triggered,
+                  "trigger count": self.trigger_count,
+                  "count": self.count,
               }
           }
         ]
@@ -78,7 +82,7 @@ class Trigger:
             elif self.mode == 'True':
                 if res:
                     to_trigger = True
-                        
+                    
             else:
                 raise ValueError('trigger mode "'+self.mode+'" is incorrect for value_type "bool"')
                     
@@ -96,6 +100,11 @@ class Trigger:
         
         
         if to_trigger:
+            self.count -= 1
+        else:
+            self.count = self.trigger_count
+            
+        if self.count < 1:
             self.triggered = True
             self.status()
             
@@ -109,13 +118,18 @@ class Trigger:
     def get_config(self):
         config = {'mode': self.mode, 
                   'value': self.value, 
-                  'triggered': self.triggered}
+                  'triggered': self.triggered,
+                  'trigger_count': self.trigger_count}
         return config
         
     def set_config(self, config):
         self.mode = config['mode']
         self.value = config['value']
         self.triggered = config['triggered']
+        if 'trigger_count' in config:
+            self.trigger_count = config['trigger_count']
+        else:
+            self.trigger_count = 10
                
 class Input:
     def __init__(self, read, name, value_type, username = None, tag = 'no tag'):
@@ -138,7 +152,7 @@ class Input:
         
         self.get_value()
             
-    def add_trigger(self, mode, value = None):
+    def add_trigger(self, mode, value = None, trigger_count = 10):
         '''
             mode: if value_type is "bool" the mode can be
                    "False": trigger interlock on False
@@ -146,8 +160,10 @@ class Input:
                   if value_type is float
                    "greater than": trigger interlock is read gives result greater than value 
                    "smaller than": trigger interlock is read gives result smaller than value
+            trigger count: number of times that condition has to be fullfilled before interlock
+                    triggers
         '''
-        trigger = Trigger(self, mode, value)
+        trigger = Trigger(self, mode, value, trigger_count)
         self.triggers += [trigger]
         
         return trigger
@@ -172,7 +188,6 @@ class Input:
         for trigger in self.triggers:
             trigger.reset()
     
-    #@timeout_decorator.timeout(1)
     def read_timeout(self):
         return self.read()
     
@@ -242,7 +257,10 @@ class Input:
         self.triggers.clear()
         
         for trig_conf in config['triggers']:
-            self.add_trigger(trig_conf['mode'], trig_conf['value'])
+            if 'trigger_count' in trig_conf:
+                self.add_trigger(trig_conf['mode'], value = trig_conf['value'], trigger_count = trig_conf['trigger_count'])
+            else:
+                self.add_trigger(trig_conf['mode'], value = trig_conf['value'])
                                      
 class Output:
     def __init__(self, write, name, value_type, initial_value, normal_value, triggered_value, username = None, tag = 'no tag'):
@@ -393,7 +411,7 @@ class Output:
 
 import traceback
 class Interlock:
-    def __init__(self, inputs, outputs, rate = 1):
+    def __init__(self, inputs, outputs, rate = 1, trigger_count = 10):
         self.loop_time = 0.
         
         self.inputs = {input.name: input for input in inputs}
@@ -569,15 +587,17 @@ class Interlock:
                     
                 if self.triggered:
                     to_trig = False
-
+                
                 if to_trig:
                     self.trigger()
+                    
                 else:
                     if self.triggered:
                         logger.info('state:triggered')
                     else:
                         logger.info('state:ok')
                 self.status()
+                
                 if self.heartbeat_connected:
                     self.swap_heartbeat()
                     
