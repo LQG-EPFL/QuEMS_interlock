@@ -780,7 +780,7 @@ class InputsExplorer(gui.VBox):
 
         self.column_label = gui.HBox([gui.Label('Name', width='100px'),
                                       gui.Label('Username', width='200px'),
-                                      gui.Label('Normal value', width='100px'),
+                                      gui.Label('Current value', width='100px'),
                                       gui.Label('List of triggers', width='60%'),
                                       gui.Label('', width='40px')], width='100%')
         self.append(self.column_label)

@@ -226,7 +226,8 @@
                 {
                     "mode": "greater than",
                     "value": 400.0,
-                    "triggered": false
+                    "triggered": false,
+                    "trigger_count": 10
                 }
             ]
         },
@@ -268,7 +269,8 @@
                 {
                     "mode": "greater than",
                     "value": 350.0,
-                    "triggered": false
+                    "triggered": false,
+                    "trigger_count": 10
                 }
             ]
         },
@@ -400,19 +402,21 @@
                 {
                     "mode": "False",
                     "value": null,
-                    "triggered": false
+                    "triggered": false,
+                    "trigger_count": 10
                 }
             ]
         },
         "di(1,2)": {
             "name": "di(1,2)",
             "tag": "Water",
-            "username": "RF cooling plate",
+            "username": "RF plate cooling",
             "triggers": [
                 {
                     "mode": "False",
                     "value": null,
-                    "triggered": false
+                    "triggered": false,
+                    "trigger_count": 10
                 }
             ]
         },
