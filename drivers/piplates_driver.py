@@ -45,7 +45,7 @@ class AI:
         self.tid = tid
         
     def get_value(self):
-        return DQ.getDAC(self.piid, self.tid)
+        return DQ.getADC(self.piid, self.tid)
 
 class AO:
     def __init__(self, piid, tid):
