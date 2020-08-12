@@ -11,9 +11,9 @@
         },
         "do(0,1)": {
             "name": "do(0,1)",
-            "tag": "digital output",
-            "username": "do(0,1)",
-            "normal_value": false,
+            "tag": "Baking",
+            "username": "ZS big",
+            "normal_value": true,
             "triggered_value": false
         },
         "do(0,2)": {
@@ -74,8 +74,8 @@
         },
         "ao(0,2)": {
             "name": "ao(0,2)",
-            "tag": "analog output",
-            "username": "ao(0,2)",
+            "tag": "Baking",
+            "username": "ZS heater",
             "normal_value": 0.0,
             "triggered_value": 0.0
         },
@@ -233,20 +233,20 @@
         },
         "temp(2,3)": {
             "name": "temp(2,3)",
-            "tag": "temperature",
-            "username": "temp(2,3)",
+            "tag": "Baking",
+            "username": "Main Chamber bottom",
             "triggers": []
         },
         "temp(2,4)": {
             "name": "temp(2,4)",
             "tag": "Baking",
-            "username": "Bottom Flange",
+            "username": "Main Chamber ZS",
             "triggers": []
         },
         "temp(2,5)": {
             "name": "temp(2,5)",
-            "tag": "temperature",
-            "username": "temp(2,5)",
+            "tag": "Baking",
+            "username": "Main Chamber Conical",
             "triggers": []
         },
         "temp(2,6)": {

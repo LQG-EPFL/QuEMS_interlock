@@ -4,30 +4,30 @@
     "outputs": {
         "do(0,0)": {
             "name": "do(0,0)",
-            "tag": "digital output",
-            "username": "do(0,0)",
-            "normal_value": false,
+            "tag": "Coils",
+            "username": "MOT interlock",
+            "normal_value": true,
             "triggered_value": false
         },
         "do(0,1)": {
             "name": "do(0,1)",
-            "tag": "digital output",
-            "username": "do(0,1)",
-            "normal_value": false,
+            "tag": "Coils",
+            "username": "ZS Big interlock",
+            "normal_value": true,
             "triggered_value": false
         },
         "do(0,2)": {
             "name": "do(0,2)",
-            "tag": "digital output",
-            "username": "do(0,2)",
-            "normal_value": false,
+            "tag": "Coils",
+            "username": "ZS Small interlock",
+            "normal_value": true,
             "triggered_value": false
         },
         "do(0,3)": {
             "name": "do(0,3)",
-            "tag": "digital output",
-            "username": "do(0,3)",
-            "normal_value": false,
+            "tag": "Coils",
+            "username": "Comp interlock",
+            "normal_value": true,
             "triggered_value": false
         },
         "do(0,4)": {
@@ -74,31 +74,31 @@
         },
         "ao(0,2)": {
             "name": "ao(0,2)",
-            "tag": "analog output",
-            "username": "ao(0,2)",
+            "tag": "Coils",
+            "username": "ZS Big current",
             "normal_value": 0.0,
             "triggered_value": 0.0
         },
         "ao(0,3)": {
             "name": "ao(0,3)",
-            "tag": "analog output",
-            "username": "ao(0,3)",
-            "normal_value": 0.0,
+            "tag": "Coils",
+            "username": "MOT current",
+            "normal_value": 4.0,
             "triggered_value": 0.0
         },
         "pwm(0,0)": {
             "name": "pwm(0,0)",
             "tag": "Lithium",
             "username": "Li oven heater",
-            "normal_value": 0.0,
-            "triggered_value": 0.0
+            "normal_value": 25.0,
+            "triggered_value": 20.0
         },
         "pwm(0,1)": {
             "name": "pwm(0,1)",
             "tag": "Lithium",
             "username": "spectro cell heater",
-            "normal_value": 50.0,
-            "triggered_value": 0.0
+            "normal_value": 85.0,
+            "triggered_value": 80.0
         },
         "do(1,0)": {
             "name": "do(1,0)",
@@ -111,7 +111,7 @@
             "name": "do(1,1)",
             "tag": "RF",
             "username": "24 rf amp",
-            "normal_value": false,
+            "normal_value": true,
             "triggered_value": false
         },
         "do(1,2)": {
@@ -214,9 +214,16 @@
         },
         "temp(2,1)": {
             "name": "temp(2,1)",
-            "tag": "temperature",
-            "username": "temp(2,1)",
-            "triggers": []
+            "tag": "Coils",
+            "username": "MOT coil bottom",
+            "triggers": [
+                {
+                    "mode": "greater than",
+                    "value": 35.0,
+                    "triggered": false,
+                    "trigger_count": 5
+                }
+            ]
         },
         "temp(2,2)": {
             "name": "temp(2,2)",
@@ -233,32 +240,39 @@
         },
         "temp(2,3)": {
             "name": "temp(2,3)",
-            "tag": "temperature",
-            "username": "temp(2,3)",
+            "tag": "Coils",
+            "username": "X comp",
             "triggers": []
         },
         "temp(2,4)": {
             "name": "temp(2,4)",
-            "tag": "temperature",
-            "username": "temp(2,4)",
-            "triggers": []
+            "tag": "Coils",
+            "username": "MOT coil up",
+            "triggers": [
+                {
+                    "mode": "greater than",
+                    "value": 30.0,
+                    "triggered": false,
+                    "trigger_count": 5
+                }
+            ]
         },
         "temp(2,5)": {
             "name": "temp(2,5)",
-            "tag": "temperature",
-            "username": "temp(2,5)",
+            "tag": "Coils",
+            "username": "Z comp down",
             "triggers": []
         },
         "temp(2,6)": {
             "name": "temp(2,6)",
-            "tag": "temperature",
-            "username": "temp(2,6)",
+            "tag": "Environment",
+            "username": "Main chamber bottom flange",
             "triggers": []
         },
         "temp(2,7)": {
             "name": "temp(2,7)",
-            "tag": "temperature",
-            "username": "temp(2,7)",
+            "tag": "Coils",
+            "username": "Y comp",
             "triggers": []
         },
         "temp(2,8)": {
@@ -268,7 +282,7 @@
             "triggers": [
                 {
                     "mode": "greater than",
-                    "value": 350.0,
+                    "value": 300.0,
                     "triggered": false,
                     "trigger_count": 10
                 }
@@ -392,7 +406,14 @@
             "name": "di(1,0)",
             "tag": "Water",
             "username": "MOT coil cooling",
-            "triggers": []
+            "triggers": [
+                {
+                    "mode": "False",
+                    "value": null,
+                    "triggered": false,
+                    "trigger_count": 5
+                }
+            ]
         },
         "di(1,1)": {
             "name": "di(1,1)",
@@ -403,7 +424,7 @@
                     "mode": "False",
                     "value": null,
                     "triggered": false,
-                    "trigger_count": 10
+                    "trigger_count": 5
                 }
             ]
         },
@@ -416,7 +437,7 @@
                     "mode": "False",
                     "value": null,
                     "triggered": false,
-                    "trigger_count": 10
+                    "trigger_count": 5
                 }
             ]
         },

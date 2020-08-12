@@ -4,5 +4,14 @@
     "do(0,6)": true,
     "do(0,7)": true,
     "do(1,1)": true,
-    "comment": "switch on lasers"
+    "comment": "switch on lasers",
+    "do(0,0)": true,
+    "do(0,1)": true,
+    "do(0,2)": true,
+    "do(0,3)": true,
+    "comment" : "switch on currents",
+    "pwm(0,0)": 25.0,
+    "pwm(0,1)": 85.0,
+    "comment" : "heat cell & oven",
+    "ao(0,0)" : 4.0
 }
