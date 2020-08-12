@@ -3,12 +3,36 @@ from datetime import datetime
 import logging
 import sys
 import json
+import threading
 
 logger = logging.getLogger('interlock')
 
-from influxdb import InfluxDBClient
-dbClient = InfluxDBClient('192.168.0.1', 8086, 'root', 'root', 'mydb', timeout = 0.02)
+class InfluxdbChannel:
+    def __init__(self, error_timeout = 10):
+        '''
+        error_timeout: if there is any error with the connection to influxdb, the object will do nothing until
+        the error_timeout time has part
+        '''
+        self.dbClient = InfluxDBClient('192.168.0.1', 8086, 'root', 'root', 'mydb', timeout = 0.02, retries = 1)
+        self.error = False
+        self.error_timeout = error_timeput
+        self.time_of_last_error = 0
+        
+    def send_data(data):
+        if error == False or time.time() - self.time_of_last_error > self.error_timeout:
+            try:
+                self.dbClient.write_points(data)
+                self.error = False
+            except KeyboardInterrupt:
+                    raise
+            except Exception as e:
+                logger.error(e, exc_info=True)
+                self.error = True
+                self.time_of_last_error = time.time()
+        else:
+            pass
 
+inflxudb_channel = InfluxdbChannel()
 class Trigger:
     def __init__(self, inp, mode, value, trigger_count):
         self.mode = mode
@@ -63,7 +87,7 @@ class Trigger:
           }
         ]
             #logger.info(self.value)
-            dbClient.write_points(data)
+            inflxudb_channel.send_data(data)
         except KeyboardInterrupt:
             raise
         except Exception as e:
@@ -221,7 +245,7 @@ class Input:
               }
           }
         ]
-            dbClient.write_points(data)
+            inflxudb_channel.send_data(data)
         except KeyboardInterrupt:
             raise
         except Exception as e:
@@ -312,7 +336,7 @@ class Output:
               }
           }
         ]
-            dbClient.write_points(data)
+            inflxudb_channel.send_data(data)
         except KeyboardInterrupt:
             raise
         except Exception as e:
@@ -526,7 +550,7 @@ class Interlock:
               }
           }
         ]
-            dbClient.write_points(data)
+            inflxudb_channel.send_data(data)
         except KeyboardInterrupt:
             raise
         except Exception as e:
@@ -572,8 +596,6 @@ class Interlock:
         self.status()
     
     def run(self):
-        import threading
-        
         self.running = True
         
         self.thread = threading.Thread(target=self.loop)
