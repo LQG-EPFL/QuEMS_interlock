@@ -15,7 +15,7 @@ class InfluxdbChannel:
         error_timeout: if there is any error with the connection to influxdb, the object will do nothing until
         the error_timeout time has part
         '''
-        self.dbClient = InfluxDBClient('192.168.0.1', 8086, 'root', 'root', 'mydb', timeout = 0.1, retries = 1)
+        self.dbClient = InfluxDBClient('192.168.0.1', 8086, 'root', 'root', 'mydb', timeout = 0.02, retries = 1)
         self.error = False
         self.error_timeout = error_timeout
         self.time_of_last_error = 0
@@ -317,6 +317,8 @@ class Output:
             self.normal_value = bool(normal_value)
             self.value_before_trigger = bool(initial_value)
         self.set_value(initial_value)
+        
+        self.is_heardbeat = False
 
 
     
@@ -359,7 +361,7 @@ class Output:
         
     def set_value(self, value):
         if not self.interlock is None:
-            if self.interlock.triggered:
+            if self.interlock.triggered and not self.is_heardbeat:
                 return 0
 		
         if self.value_type == 'float':
@@ -572,6 +574,7 @@ class Interlock:
     def set_heartbeat(self, hb_output):
         
         self.heartbeat = hb_output
+        self.heartbeat.is_heardbeat = True
         self.heartbeat_connected = True
     
     def reset(self):
@@ -635,7 +638,7 @@ class Interlock:
         except KeyboardInterrupt:
             raise
         except Exception as e:
-            logger.error('Fatal error in Interlock loop!!! ', str(self))
+            logger.error('Fatal error in Interlock loop!!!', str(self))
             logger.error(e, exc_info=True)
             self.running = False
             self.trigger()
