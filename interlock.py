@@ -7,6 +7,8 @@ import threading
 
 logger = logging.getLogger('interlock')
 
+
+from influxdb import InfluxDBClient
 class InfluxdbChannel:
     def __init__(self, error_timeout = 10):
         '''
@@ -15,11 +17,11 @@ class InfluxdbChannel:
         '''
         self.dbClient = InfluxDBClient('192.168.0.1', 8086, 'root', 'root', 'mydb', timeout = 0.02, retries = 1)
         self.error = False
-        self.error_timeout = error_timeput
+        self.error_timeout = error_timeout
         self.time_of_last_error = 0
         
-    def send_data(data):
-        if error == False or time.time() - self.time_of_last_error > self.error_timeout:
+    def send_data(self, data):
+        if self.error == False or time.time() - self.time_of_last_error > self.error_timeout:
             try:
                 self.dbClient.write_points(data)
                 self.error = False
