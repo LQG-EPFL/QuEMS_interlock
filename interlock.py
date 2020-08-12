@@ -289,7 +289,7 @@ class Output:
             self.triggered_value = bool(triggered_value)
             self.normal_value = bool(normal_value)
             self.value_before_trigger = bool(initial_value)
-        
+        self.triggered = True
         self.set_value(initial_value)
 
     
@@ -331,7 +331,9 @@ class Output:
         return self.username
         
     def set_value(self, value):
-    
+    	if self.triggered:
+		return 0
+		
         if self.value_type == 'float':
             value = float(value)
         if self.value_type == 'bool':
@@ -377,12 +379,13 @@ class Output:
             
     def trigger(self):
         self.value_before_trigger = self.value
-        
+        self.triggered = True
         if self.triggered_value is not None:
             self.set_value(self.triggered_value)
         
                 
     def reset(self):
+	self.triggered = False
         self.set_value(self.value_before_trigger)
         
     def set_normal(self):
