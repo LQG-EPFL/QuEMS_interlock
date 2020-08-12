@@ -331,8 +331,8 @@ class Output:
         return self.username
         
     def set_value(self, value):
-    	if self.triggered:
-		return 0
+        if self.triggered:
+        return 0
 		
         if self.value_type == 'float':
             value = float(value)
@@ -385,7 +385,7 @@ class Output:
         
                 
     def reset(self):
-	self.triggered = False
+        self.triggered = False
         self.set_value(self.value_before_trigger)
         
     def set_normal(self):
