@@ -289,8 +289,9 @@ class Output:
             self.triggered_value = bool(triggered_value)
             self.normal_value = bool(normal_value)
             self.value_before_trigger = bool(initial_value)
-        self.triggered = True
+        self.triggered = False
         self.set_value(initial_value)
+        self.triggered = True
 
     
     def status(self):
@@ -332,7 +333,7 @@ class Output:
         
     def set_value(self, value):
         if self.triggered:
-        return 0
+            return 0
 		
         if self.value_type == 'float':
             value = float(value)
