@@ -302,7 +302,8 @@ class Output:
         self.value_type = value_type
         
         self.tag = tag
-
+        self.interlock = None
+        
         if username == None:
             self.username = name
         
@@ -357,8 +358,9 @@ class Output:
         return self.username
         
     def set_value(self, value):
-        if self.interlock.triggered:
-            return 0
+        if not self.interlock is None:
+            if self.interlock.triggered:
+                return 0
 		
         if self.value_type == 'float':
             value = float(value)
