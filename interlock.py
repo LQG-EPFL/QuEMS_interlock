@@ -315,9 +315,8 @@ class Output:
             self.triggered_value = bool(triggered_value)
             self.normal_value = bool(normal_value)
             self.value_before_trigger = bool(initial_value)
-        self.triggered = False
         self.set_value(initial_value)
-        self.triggered = True
+
 
     
     def status(self):
@@ -358,7 +357,7 @@ class Output:
         return self.username
         
     def set_value(self, value):
-        if self.triggered:
+        if self.interlock.triggered:
             return 0
 		
         if self.value_type == 'float':
@@ -395,24 +394,18 @@ class Output:
         self.status()
     
     def set_to_normal_value(self):
-        if self.interlock.triggered:
-            return 0
         self.set_value(self.normal_value)
         
     def set_to_triggered_value(self):
-        if self.interlock.triggered:
-            return 0
         self.set_value(self.triggered_value)
             
     def trigger(self):
         self.value_before_trigger = self.value
-        self.triggered = True
         if self.triggered_value is not None:
             self.set_value(self.triggered_value)
         
                 
     def reset(self):
-        self.triggered = False
         self.set_value(self.value_before_trigger)
         
     def set_normal(self):
