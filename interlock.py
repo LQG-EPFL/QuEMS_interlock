@@ -256,9 +256,13 @@ class Input:
         
     def check_triggers(self):
         self.get_value()
+        
+        to_trig = False
+        
         for trigger in self.triggers:
-            if trigger.check():
-                return True
+            to_trig = trigger.check() or to_trig
+        
+        return to_trig
             
     
     def __repr__(self):
@@ -609,7 +613,7 @@ class Interlock:
                 t = time.time()
                 to_trig = False
                 for inp in self.inputs.values():
-                    to_trig = to_trig or inp.check_triggers()
+                    to_trig = inp.check_triggers() or to_trig
                     
                 if self.triggered:
                     to_trig = False
