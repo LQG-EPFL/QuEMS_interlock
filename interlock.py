@@ -363,9 +363,9 @@ class Output:
         
         return self.username
         
-    def set_value(self, value):
+    def set_value(self, value, force = False):
         if not self.interlock is None:
-            if self.interlock.triggered and not self.is_heardbeat:
+            if not force and self.interlock.triggered and not self.is_heardbeat:
                 return 0
 		
         if self.value_type == 'float':
@@ -410,7 +410,7 @@ class Output:
     def trigger(self):
         self.value_before_trigger = self.value
         if self.triggered_value is not None:
-            self.set_value(self.triggered_value)
+            self.set_value(self.triggered_value, force = True)
         
                 
     def reset(self):
