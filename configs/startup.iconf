@@ -242,7 +242,14 @@
             "name": "temp(2,3)",
             "tag": "Coils",
             "username": "X comp",
-            "triggers": []
+            "triggers": [
+                {
+                    "mode": "greater than",
+                    "value": 50.0,
+                    "triggered": false,
+                    "trigger_count": 10
+                }
+            ]
         },
         "temp(2,4)": {
             "name": "temp(2,4)",
@@ -261,19 +268,40 @@
             "name": "temp(2,5)",
             "tag": "Coils",
             "username": "Z comp down",
-            "triggers": []
+            "triggers": [
+                {
+                    "mode": "greater than",
+                    "value": 50.0,
+                    "triggered": false,
+                    "trigger_count": 10
+                }
+            ]
         },
         "temp(2,6)": {
             "name": "temp(2,6)",
             "tag": "Environment",
             "username": "Main chamber bottom flange",
-            "triggers": []
+            "triggers": [
+                {
+                    "mode": "greater than",
+                    "value": 27.0,
+                    "triggered": false,
+                    "trigger_count": 10
+                }
+            ]
         },
         "temp(2,7)": {
             "name": "temp(2,7)",
             "tag": "Coils",
             "username": "Y comp",
-            "triggers": []
+            "triggers": [
+                {
+                    "mode": "greater than",
+                    "value": 50.0,
+                    "triggered": false,
+                    "trigger_count": 10
+                }
+            ]
         },
         "temp(2,8)": {
             "name": "temp(2,8)",
@@ -292,7 +320,14 @@
             "name": "temp(2,9)",
             "tag": "Environment",
             "username": "Cooling water",
-            "triggers": []
+            "triggers": [
+                {
+                    "mode": "greater than",
+                    "value": 21.0,
+                    "triggered": false,
+                    "trigger_count": 10
+                }
+            ]
         },
         "temp(2,10)": {
             "name": "temp(2,10)",
@@ -520,5 +555,5 @@
             "triggers": []
         }
     },
-    "comment": ""
+    "comment": "added some triggers"
 }
