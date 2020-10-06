@@ -89,6 +89,7 @@ class Trigger:
                       "is triggered": self.triggered,
                       "trigger count": self.trigger_count,
                       "count": self.count,
+                      "is warned": self.warned,
                   }
               }
             ]
@@ -103,8 +104,7 @@ class Trigger:
                       "trigger if" : self.mode,
                       "value of trigger": self.value,
                       "is triggered": self.triggered,
-                      "trigger count": self.trigger_count,
-                      "count": self.count,
+                      "is warned": self.warned,
                   }
               }
             ]
