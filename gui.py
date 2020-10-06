@@ -528,7 +528,7 @@ class TriggerGUI(gui.HBox):
         if self.trigger.triggered:
             self.style['border-color'] = 'red'
         
-        elif self.trigger.count < self.trigger.trigger_count:
+        elif self.trigger.warned:
             self.style['border-color'] = 'orange'
             if not self.audio_warned:
                 try:

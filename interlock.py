@@ -41,6 +41,7 @@ class Trigger:
         self.value = value
         self.input = inp
         self.triggered = False
+        self.warned = False
         self.trigger_count = trigger_count
         self.count = self.trigger_count
         self.check()
@@ -127,8 +128,10 @@ class Trigger:
         
         if to_trigger:
             self.count -= 1
+            self.warned = True
         else:
             self.count = self.trigger_count
+            self.warned = False
             
         if self.count < 1:
             self.triggered = True
