@@ -5,6 +5,8 @@ import sys
 import json
 import threading
 
+import numpy as np
+
 logger = logging.getLogger('interlock')
 
 
