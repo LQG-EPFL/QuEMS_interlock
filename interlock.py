@@ -74,21 +74,39 @@ class Trigger:
     
     def status(self):
         try:
-            data = [
-        {
-          "measurement": 'Trigger if '+str(self.input),
-              "tags": {
-              },
-              "time":  datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
-              "fields": {
-                  "trigger if" : self.mode,
-                  "value of trigger": self.value,
-                  "is triggered": self.triggered,
-                  "trigger count": self.trigger_count,
-                  "count": self.count,
+            if np.is_finite(self.trigger_count):
+                data = [
+            {
+              "measurement": 'Trigger if '+str(self.input),
+                  "tags": {
+                  },
+                  "time":  datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
+                  "fields": {
+                      "trigger if" : self.mode,
+                      "value of trigger": self.value,
+                      "is triggered": self.triggered,
+                      "trigger count": self.trigger_count,
+                      "count": self.count,
+                  }
               }
-          }
-        ]
+            ]
+            else:
+                data = [
+            {
+              "measurement": 'Trigger if '+str(self.input),
+                  "tags": {
+                  },
+                  "time":  datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
+                  "fields": {
+                      "trigger if" : self.mode,
+                      "value of trigger": self.value,
+                      "is triggered": self.triggered,
+                      "trigger count": self.trigger_count,
+                      "count": self.count,
+                  }
+              }
+            ]
+                
             #logger.info(self.value)
             inflxudb_channel.send_data(data)
         except KeyboardInterrupt:
