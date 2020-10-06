@@ -500,7 +500,7 @@ class TriggerGUI(gui.HBox):
         return self.trigger.trigger_count
         
     def set_trigger_count(self, trigger_count):
-        self.trigger.trigger_count = int(trigger_count)
+        self.trigger.trigger_count = float(trigger_count)
         
     
     def set_value(self, value):
@@ -668,7 +668,7 @@ class InputGUI(gui.HBox):
         def register_trigger(widget):
             
             mode = gd.get_field('mode').get_value()
-            trigger_count = int(gd.get_field('trigger_count').get_value())
+            trigger_count = float(gd.get_field('trigger_count').get_value())
             if self.input.value_type == 'float':
                 value = gd.get_field('value').get_value()
                 trigger = self.input.add_trigger(mode, float(value), trigger_count )
@@ -1456,7 +1456,7 @@ class ValuesManager(gui.Container):
         if button.filename == 'day.ival':
             read_text('Good morning, experimenter! The interlock is at your service!', self.app)
         if button.filename == 'night.ival':
-            read_text('Good night, experimenter! The interlock will care about the experiment while you get your well deserved sleep!', self.app)
+            read_text('Good night, experimenter! Enjoy your evening!', self.app)
         self.app.reload()
         self.reload()
     
