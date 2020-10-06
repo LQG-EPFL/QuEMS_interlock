@@ -397,8 +397,8 @@
         },
         "ai(0,1)": {
             "name": "ai(0,1)",
-            "tag": "analog input",
-            "username": "ai(0,1)",
+            "tag": "Laser powers",
+            "username": "671 main",
             "triggers": []
         },
         "ai(0,2)": {
@@ -555,5 +555,5 @@
             "triggers": []
         }
     },
-    "comment": "added some triggers"
+    "comment": ""
 }
