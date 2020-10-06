@@ -391,32 +391,39 @@
         },
         "ai(0,0)": {
             "name": "ai(0,0)",
-            "tag": "analog input",
-            "username": "ai(0,0)",
+            "tag": "Laser powers",
+            "username": "blue vertical power",
             "triggers": []
         },
         "ai(0,1)": {
             "name": "ai(0,1)",
             "tag": "Laser powers",
-            "username": "671 main",
-            "triggers": []
+            "username": "671 main power",
+            "triggers": [
+                {
+                    "mode": "smaller than",
+                    "value": 0.9,
+                    "triggered": false,
+                    "trigger_count": Infinity
+                }
+            ]
         },
         "ai(0,2)": {
             "name": "ai(0,2)",
-            "tag": "analog input",
-            "username": "ai(0,2)",
+            "tag": "Laser powers",
+            "username": "MOT vertical power",
             "triggers": []
         },
         "ai(0,3)": {
             "name": "ai(0,3)",
-            "tag": "analog input",
-            "username": "ai(0,3)",
+            "tag": "Laser powers",
+            "username": "Cooler repumper power",
             "triggers": []
         },
         "ai(0,4)": {
             "name": "ai(0,4)",
-            "tag": "analog input",
-            "username": "ai(0,4)",
+            "tag": "Laser powers",
+            "username": "460 main power",
             "triggers": []
         },
         "ai(0,5)": {

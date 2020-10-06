@@ -76,7 +76,7 @@ class Trigger:
     
     def status(self):
         try:
-            if np.is_finite(self.trigger_count):
+            if np.isfinite(self.trigger_count):
                 data = [
             {
               "measurement": 'Trigger if '+str(self.input),
