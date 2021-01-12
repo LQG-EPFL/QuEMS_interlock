@@ -10,7 +10,7 @@
     "do(0,2)": false,
     "do(0,3)": false,
     "comment" : "switch off currents",
-    "pwm(0,0)": 20.0,
+    "pwm(0,0)": 27.5,
     "pwm(0,1)": 80.0,
     "ao(0,0)": 0.0,
     "comment" : "close flag, cool cell & oven"

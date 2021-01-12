@@ -90,8 +90,8 @@
             "name": "pwm(0,0)",
             "tag": "Lithium",
             "username": "Li oven heater",
-            "normal_value": 25.0,
-            "triggered_value": 20.0
+            "normal_value": 35.0,
+            "triggered_value": 27.5
         },
         "pwm(0,1)": {
             "name": "pwm(0,1)",
@@ -310,7 +310,7 @@
             "triggers": [
                 {
                     "mode": "greater than",
-                    "value": 300.0,
+                    "value": 350.0,
                     "triggered": false,
                     "trigger_count": 10
                 }
@@ -392,7 +392,7 @@
         "ai(0,0)": {
             "name": "ai(0,0)",
             "tag": "Laser powers",
-            "username": "blue vertical power",
+            "username": "MOT vertical power",
             "triggers": []
         },
         "ai(0,1)": {
@@ -402,7 +402,7 @@
             "triggers": [
                 {
                     "mode": "smaller than",
-                    "value": 0.9,
+                    "value": 0.85,
                     "triggered": false,
                     "trigger_count": Infinity
                 }
@@ -411,7 +411,7 @@
         "ai(0,2)": {
             "name": "ai(0,2)",
             "tag": "Laser powers",
-            "username": "MOT vertical power",
+            "username": "blue vertical power",
             "triggers": []
         },
         "ai(0,3)": {
@@ -424,12 +424,19 @@
             "name": "ai(0,4)",
             "tag": "Laser powers",
             "username": "460 main power",
-            "triggers": []
+            "triggers": [
+                {
+                    "mode": "smaller than",
+                    "value": 1.2,
+                    "triggered": false,
+                    "trigger_count": Infinity
+                }
+            ]
         },
         "ai(0,5)": {
             "name": "ai(0,5)",
-            "tag": "analog input",
-            "username": "ai(0,5)",
+            "tag": "Lock Monitor",
+            "username": "Cavity Offset voltage",
             "triggers": []
         },
         "ai(0,6)": {

@@ -10,7 +10,7 @@
     "do(0,2)": true,
     "do(0,3)": true,
     "comment" : "switch on currents",
-    "pwm(0,0)": 25.0,
+    "pwm(0,0)": 35.0,
     "pwm(0,1)": 85.0,
     "comment" : "heat cell & oven",
     "ao(0,0)" : 4.0

@@ -5,6 +5,8 @@ import sys
 import json
 import threading
 
+import traceback
+
 import numpy as np
 
 logger = logging.getLogger('interlock')
@@ -17,7 +19,8 @@ class InfluxdbChannel:
         error_timeout: if there is any error with the connection to influxdb, the object will do nothing until
         the error_timeout time has part
         '''
-        self.dbClient = InfluxDBClient('192.168.0.1', 8086, 'root', 'root', 'mydb', timeout = 0.1, retries = 3)
+        self.dbClient = InfluxDBClient('192.168.0.1', 8086, 'root', 'root', 'mydb',
+                       timeout = 0.1, retries = 2)
         self.error = False
         self.error_timeout = error_timeout
         self.time_of_last_error = 0
@@ -37,6 +40,8 @@ class InfluxdbChannel:
             pass
 
 inflxudb_channel = InfluxdbChannel()
+
+
 class Trigger:
     def __init__(self, inp, mode, value, trigger_count):
         self.mode = mode
@@ -242,13 +247,14 @@ class Input:
     
     def get_value(self):
         try:
-            
             value = self.read_timeout()
         except KeyboardInterrupt:
             raise
         except Exception as e:
             logger.error('Error in reading the value from ', str(self))
             logger.error(e, exc_info=True)
+            raise Exception('Value of ',str(self),' could not be read')
+            
         self.last_value = value
         self.status()
         
@@ -390,7 +396,7 @@ class Output:
         if not self.interlock is None:
             if not force and self.interlock.triggered and not self.is_heardbeat:
                 return 0
-		
+        
         if self.value_type == 'float':
             value = float(value)
         if self.value_type == 'bool':
@@ -404,6 +410,7 @@ class Output:
         except Exception as e:
             logger.error('Error in writing the value to ', str(self))
             logger.error(e, exc_info=True)
+            raise Exception('Value of ',str(self),' could not be set')
             
         self.status()
         
@@ -463,7 +470,7 @@ class Output:
         
         self.set_value(self.triggered_value)
 
-import traceback
+
 class Interlock:
     def __init__(self, inputs, outputs, rate = 1, trigger_count = 10):
         self.loop_time = 0.
@@ -582,15 +589,6 @@ class Interlock:
         except Exception as e:
             logger.error('Connection with influxdb failed in ', str(self))
             logger.error(e, exc_info=True)
-            
-        if self.gui:    
-            try:    
-                self.interlock_app.refresh()
-            except KeyboardInterrupt:
-                raise
-            except Exception as e:
-                logger.error('Interlock failed to refesh gui')
-                logger.error(e, exc_info=True)
                 
     def trigger(self):
         self.triggered = True
@@ -635,9 +633,12 @@ class Interlock:
             while self.running:
                 t = time.time()
                 to_trig = False
+                
+                logger.info('Check inputs')
+                
                 for inp in self.inputs.values():
                     to_trig = inp.check_triggers() or to_trig
-                    
+                    logger.info(inp)
                 if self.triggered:
                     to_trig = False
                 
@@ -649,9 +650,11 @@ class Interlock:
                         logger.info('state:triggered')
                     else:
                         logger.info('state:ok')
+                logger.info('Sending status')
                 self.status()
                 
                 if self.heartbeat_connected:
+                    logger.info('Sawp heartbeat')
                     self.swap_heartbeat()
                     
                 time_passed = time.time()-t
@@ -660,8 +663,8 @@ class Interlock:
                     time.sleep(1/self.rate - time_passed)
                 else:
                     max_rate = 1/time_passed
-                    logger.info(f'rate of {self.rate:2f} could not be reached. Best rate: {max_rate}')
-                
+                    logger.info(f'rate of {self.rate:2f} could not be reached. Best rate: {max_rate:2f}')
+                print ('all fine, next iteration -->')
         except KeyboardInterrupt:
             raise
         except Exception as e:

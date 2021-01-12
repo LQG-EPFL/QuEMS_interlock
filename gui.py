@@ -9,32 +9,24 @@ logger = logging.getLogger('interlock')
 
 import numpy as np
 
+import requests
+import threading
+
+def check_internet_connection():
+    url = "https://www.google.com"
+    timeout = 0.2
+    try:
+        request = requests.get(url, timeout=timeout)
+        return True
+
+    except (requests.ConnectionError, requests.Timeout) as exception:
+        return False
+
 def read_text(text, app):
-    audio_filename = '/home/pi/QuEMS_interlock/audio/speech.mp3'
-    # Import the required module for text  
-    # to speech conversion 
-    from gtts import gTTS 
-  
-    # This module is imported so that we can  
-    # play the converted audio 
-    import os 
-  
-    # The text that you want to convert to audio 
-  
-    # Language in which you want to convert 
-    language = 'en'
-    # Passing the text and language to the engine,  
-    # here we have marked slow=False. Which tells  
-    # the module that the converted audio should  
-    # have a high speed 
-    myobj = gTTS(text=text, lang=language, slow=False) 
-  
-    # Saving the converted audio in a mp3 file named 
-    #welcome  
-    myobj.save(audio_filename) 
-  
-    
-    app.execute_javascript("(new Audio('%s')).play();"%gui.load_resource(audio_filename))
+    app.execute_javascript("""
+        var msg = new SpeechSynthesisUtterance('%s');
+        window.speechSynthesis.speak(msg);
+        """%text)
 
 class GenericDialog(gui.Container):
     """ Generic Dialog widget. It can be customized to create personalized dialog windows.
@@ -1454,7 +1446,19 @@ class ValuesManager(gui.Container):
     def load_values(self, button):
         self.interlock.load_values(os.path.join(self.app.values_folder,button.filename))
         if button.filename == 'day.ival':
-            read_text('Good morning, experimenter! The interlock is at your service!', self.app)
+            from random import randrange
+            import time
+            poemsdb = np.load('sonnets.npy')
+            randid = randrange(len(poemsdb))
+            
+            poem = poemsdb[randid]
+            good_morning = 'Good morning, experimenter! The interlock is at your service! Today, I will read to you '+poem['title']+' by '+poem['author']#
+            
+            read_text(good_morning, self.app)
+            time.sleep(4)
+            for line in poem['lines']:
+                read_text(line, self.app)
+                time.sleep(1)
         if button.filename == 'night.ival':
             read_text('Good night, experimenter! Enjoy your evening!', self.app)
         self.app.reload()
@@ -1494,6 +1498,31 @@ class QuEMS_Interlock(App):
         images_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'images')
         audio_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'audio')
         super(QuEMS_Interlock, self).__init__(*args, static_file_path={'images':images_path,'audio':audio_path})
+        
+    def start_refresh_loop(self):
+        self.refresh_thread = threading.Thread(target=self.refresh_loop)
+        self.refresh_thread.daemon = True
+        self.refresh_thread.start()
+        
+    def stop_refresh_loop(self):
+        self.refresh_thread.join()
+        
+    def restart_refresh_loop(self):
+        self.stop_refresh_loop()
+        self.start_refresh_loop()
+        
+    def refresh_loop(self):
+        import time
+        while True:
+            try:
+                time.sleep(1)
+                self.refresh()
+            except KeyboardInterrupt:
+                raise
+            except Exception as e:
+                logger.error('refresh loop failed. Sleep for 5s')
+                logger.error(e, exc_info=True)
+                time.sleep(5)
 
     def main(self, interlock, config_folder = '.', values_folder = '.'):
         
@@ -1532,7 +1561,9 @@ class QuEMS_Interlock(App):
         self.outexp = OutputsExplorer(self.interlock, self)
         
         self.container.append(self.outexp)
-
+        
+        self.start_refresh_loop()
+        
         return self.container
     
     
