@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Installation - Anaysis Plot Panel documentation</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Anaysis Plot Panel documentation</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../home.md" class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../hardware/" class="nav-link">Hardware Setup</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../grafana/" class="nav-link">Grafana</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Installation</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../grafana/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#installation" class="nav-link">Installation</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#setup-on-raspberry-pi" class="nav-link">Setup on Raspberry pi</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#setup-on-data-server" class="nav-link">Setup on data server</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#for-other-computers-make-port-forwarding" class="nav-link">For other computers make port forwarding</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="installation">Installation</h1>
+<p>For the installation of the QuEMS_interlock, one has to install software on the raspberry pi and another computer (data server) that is used for data storage (influxDB and grafana). </p>
+<h2 id="setup-on-raspberry-pi">Setup on Raspberry pi</h2>
+<h3 id="install-the-necessary-python-packages">Install the necessary python packages</h3>
+<p>make sure that the rpi has a connection to the internet during the following steps:</p>
+<h4 id="remi">REMI</h4>
+<pre><code class="language-bash">git clone https://github.com/dddomodossola/remi
+cd remi
+sudo python3 setup.py install
+cd ..
+</code></pre>
+<h4 id="influxdb">influxdb</h4>
+<pre><code class="language-bash">sudo pip3 install influxdb
+</code></pre>
+<h4 id="pi-plates">pi-plates</h4>
+<p>enable spi as described here:
+https://pi-plates.com/getting_started/</p>
+<pre><code class="language-bash">sudo pip3 install pi-plates
+</code></pre>
+<h4 id="psutils">psutils</h4>
+<pre><code class="language-bash">sudo pip3 install psutil
+</code></pre>
+<h3 id="clone-quems_interlock">clone QuEMS_interlock</h3>
+<pre><code class="language-bash">git clone https://c4science.ch/source/QuEMS_interlock.git
+</code></pre>
+<p>Adjust the code in interlock.py to fit your configuration of influxdb:</p>
+<pre><code class="language-python">dbClient = InfluxDBClient('192.168.0.1', 8086, 'root', 'root', 'mydb', timeout = 0.1) 
+</code></pre>
+<p>Adjust the main.py for your needs. This means connect you devices and configure the correct folders for configs and values.</p>
+<p>place your old config files in </p>
+<pre><code>./QuEMS_interlock/config
+</code></pre>
+<p>test the interlock by running</p>
+<pre><code class="language-bash">python3 main.py
+</code></pre>
+<h3 id="setup-of-launcher-on-rasperry-pi">Setup of launcher on rasperry pi</h3>
+<pre><code class="language-bash">mkdir ./logs
+</code></pre>
+<p>Add the following line to crontab -e:</p>
+<pre><code>@reboot sh /home/pi/QuEMS_interlock/launch_interlock.sh &gt;/home/pi/logs/cronlog 2&gt;&amp;1
+</code></pre>
+<p>To state the pi in kiosk mode add:</p>
+<pre><code>@chromium-browser --start-fullscreen http://localhost:10000
+</code></pre>
+<p>to /etc/xdg/lxsession/LXDE-pi/autostart</p>
+<h3 id="touchscreen-setup">Touchscreen setup</h3>
+<p>If you want to use a touchscreen with the pi you can install the following:</p>
+<p>sudo apt-get install at-spi2-core
+sudo apt-get install florence</p>
+<h2 id="setup-on-data-server">Setup on data server</h2>
+<p>install docker from https://www.docker.com/</p>
+<h3 id="download-influxdb">download influxDB</h3>
+<p>make c shared drive of docker
+https://stackoverflow.com/questions/56797665/error-response-from-daemon-drive-has-not-been-shared</p>
+<pre><code class="language-bash">docker pull influxdb
+docker run -d --name=influxdb -p 8086:8086 --volume &quot;C:/Users/admin/influxdb:/var/lib/influxdb&quot; influxdb
+curl http://localhost:8086/query --data-urlencode 'q=CREATE DATABASE &quot;mydb&quot;'
+</code></pre>
+<h3 id="test-database">test database</h3>
+<pre><code class="language-bash">curl -i -XPOST &quot;http://localhost:8086/write?db=mydb&quot; --data-binary 'myvar,mytag=1 myfield=90 1549412796'
+</code></pre>
+<h3 id="download-grafanagrafana">download grafana/grafana</h3>
+<pre><code class="language-bash">docker pull grafana/grafana
+docker run -d --name=grafana -p 3000:3000 --volume &quot;C:/Users/admin/graphana:/var/lib/grafana&quot; --link influxdb grafana/grafana
+link database to http://influxdb:8086 and set database name to mydb
+</code></pre>
+<p>if docker stopped it can be restarted with docker restart container</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Make sure that you have made all the firewall exceptions for port 3000 (influxdb), 10000 (QuEMS_interlock), 8086 (Grafana).</p>
+</div>
+<h2 id="for-other-computers-make-port-forwarding">For other computers make port forwarding</h2>
+<pre><code class="language-bash">netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=10000 connectaddress=192.168.0.4 connectport=10000
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
