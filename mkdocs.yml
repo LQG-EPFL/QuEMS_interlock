@@ -1,0 +1,16 @@
+site_name: Anaysis Plot Panel documentation
+nav:
+    - Home: home.md
+    - Software Structure: software.md
+    - Hardware Setup: hardware.md
+    - Installation: installation.md
+# Enabling LaTeX math equations
+extra_javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+
+markdown_extensions:
+    - mdx_math
+    - admonition
+
+plugins:
+- search
