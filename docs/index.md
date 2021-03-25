@@ -1,4 +1,4 @@
-# What is the QuEMS_Interlock?
+# QuEMS Interlock
 
 The QuEMS Intelock is a device to ensure the safety on an experiment and log important environmental parameters, like temperatures, laser powers, vacuum pressures, and so on. Its hardware is based on an raspberry pi with [pi-plates cards](https://pi-plates.com/). There are several important features that I would like to present here:
 

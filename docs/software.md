@@ -2,9 +2,7 @@
 
 The interlock software can be divided in three parts, the interlock class, the REMI based GUI which are running on the raspberry pi and the influxDB+grafana running on the experiment server. All the user interfaces are web-based which allows the user to access the software from many different devices.
 
-The diagram below illustrates the structure of the interlock code.
-
-<img src="Software_structure.PNG" style="zoom:80%;" />
+The diagram below illustrates the structure of the interlock code.![](Software_structure.PNG)
 
 The central piece of the software is the Interlock class. It can read all the inputs and control all the outputs.
 

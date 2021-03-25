@@ -1,4 +1,4 @@
-site_name: Anaysis Plot Panel documentation
+site_name: QuEMS Interlock
 nav:
     - Home: home.md
     - Software Structure: software.md

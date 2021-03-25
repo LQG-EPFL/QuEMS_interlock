@@ -1,12 +1,12 @@
 # Hardware layout
 
-The hardware of the interlock system is based on an raspberry pi with [pi-plates cards](https://pi-plates.com/). The pi-plates are connected to the raspberry pi via the GPIO ports. This assembly is mounted on a DIN-rail inside a plastic switch cabinet. On the cabinet, there is a touch screen mounted that allows the user to interact with the GUI.
+The hardware of the interlock system is based on an raspberry pi with [pi-plates cards](https://pi-plates.com/). The pi-plates are connected to the raspberry pi via the GPIO ports. This assembly is mounted on a DIN-rail inside a plastic switch cabinet. On the cabinet, there is a touch screen mounted that allows the user to interact with the GUI.![](Outside_hardware.svg)
 
-<img src="Outside_hardware.svg" style="zoom:60%;" />
+
 
 ## Inside the Interlock box
 
-<img src="Inside_hardware.svg" style="zoom:60%;" />
+![](Inside_hardware.svg)
 
 The whole assembly is powered by a 5V/6A power supply. The power is than wired through the heartbeat relay to the raspberry pi.
 
