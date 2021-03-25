@@ -1,6 +1,6 @@
 site_name: QuEMS Interlock
 nav:
-    - Home: home.md
+    - Home: index.md
     - Software Structure: software.md
     - Hardware Setup: hardware.md
     - Installation: installation.md
