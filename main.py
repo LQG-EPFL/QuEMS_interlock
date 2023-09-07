@@ -16,10 +16,10 @@ load_config = True
 from drivers.piplates_driver import *
 from drivers.pfeiffer_driver import *
 
-pres_ins = make_TPG362('/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AM0076FH-if00-port0')
-temp_ins = make_THERMOplate(2)
-daqc1_ins, daqc1_outs = make_DAQCplate(0)
-daqc2_ins, daqc2_outs = make_DAQCplate(1)
+#pres_ins = make_TPG362('/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AM0076FH-if00-port0')
+temp_ins = make_THERMOplate(1)
+daqc1_ins, daqc1_outs = make_DAQCplate(3)
+#daqc2_ins, daqc2_outs = make_DAQCplate(1)
 
 
 #test inputs and outputs
@@ -29,18 +29,19 @@ daqc2_ins, daqc2_outs = make_DAQCplate(1)
 #test_out = Output(print, 'test_out','float',0, 0, 0)
 
 #start interlock
-interlock = Interlock(pres_ins+temp_ins+daqc1_ins+daqc2_ins,daqc1_outs + daqc2_outs)   
+interlock = Interlock(temp_ins+daqc1_ins,daqc1_outs) 
+#Interlock(pres_ins+temp_ins+daqc1_ins+daqc2_ins,daqc1_outs + daqc2_outs)   
 
 #load old configuration
-config_folder = '/home/pi/QuEMS_interlock/configs'
-values_folder = '/home/pi/QuEMS_interlock/values'
+config_folder = '/home/aokilab/Interlock/configs'
+values_folder = '/home/aokilab/Interlock/values'
 if load_config:
     interlock.load_config(config_folder+'/startup.iconf')
 
 #start heartbeat
 if heartbeat:
-    for output in daqc2_outs:
-        if output.name == 'do(1,0)':
+    for output in daqc1_outs:
+        if output.name == 'do(3,0)':
             hb_ouput = output
             break
     interlock.set_heartbeat(output)
@@ -54,5 +55,5 @@ interlock.reset()
 
 #launch gui
 import remi
-remi.start(gui.QuEMS_Interlock,start_browser=False,username = 'lqg', password = 'ManipeEPFL2018',address='0.0.0.0', port = 10000, userdata = (interlock,config_folder,values_folder,))
+remi.start(gui.QuEMS_Interlock,start_browser=False,username = 'aokilab', password = 'Cesium8523',address='192.168.100.30', port = 10000, userdata = (interlock,config_folder,values_folder,))
 
