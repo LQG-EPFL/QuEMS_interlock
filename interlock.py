@@ -12,15 +12,21 @@ import numpy as np
 logger = logging.getLogger('interlock')
 
 
-from influxdb import InfluxDBClient
+from influxdb_client import InfluxDBClient, Point
+from influxdb_client.client.write_api import SYNCHRONOUS
+
 class InfluxdbChannel:
     def __init__(self, error_timeout = 10):
         '''
         error_timeout: if there is any error with the connection to influxdb, the object will do nothing until
         the error_timeout time has part
         '''
-        self.dbClient = InfluxDBClient('192.168.0.1', 8086, 'root', 'root', 'mydb',
-                       timeout = 0.1, retries = 2)
+        bucket="test"
+        client=InfluxDBClient(url="192.168.100.27:8086", token="II0t4Xqav1bHUwcTUUUBRrP9ZD3fNNu1BLd9O2X2VQEVM4iu5dnEuMrblDfoizcm5OJiWMv1piLgeCJWrn2aPQ==", org="Waseda")
+        
+        write_api=client.write_api(write_options=SYNCHRONOUS)
+        query_api=client.query_api()
+        
         self.error = False
         self.error_timeout = error_timeout
         self.time_of_last_error = 0
@@ -28,7 +34,11 @@ class InfluxdbChannel:
     def send_data(self, data):
         if self.error == False or time.time() - self.time_of_last_error > self.error_timeout:
             try:
-                self.dbClient.write_points(data)
+                bucket="test"
+                client=InfluxDBClient(url="192.168.100.11:8086", token="II0t4Xqav1bHUwcTUUUBRrP9ZD3fNNu1BLd9O2X2VQEVM4iu5dnEuMrblDfoizcm5OJiWMv1piLgeCJWrn2aPQ==", org="Waseda")
+                write_api=client.write_api(write_options=SYNCHRONOUS)
+                query_api=client.query_api() 
+                write_api.write(bucket=bucket, record=data)
                 self.error = False
             except KeyboardInterrupt:
                     raise
