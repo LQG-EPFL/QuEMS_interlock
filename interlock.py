@@ -33,7 +33,7 @@ class InfluxdbChannel:
             except KeyboardInterrupt:
                     raise
             except Exception as e:
-                logger.error(e, exc_info=True)
+                # ~ logger.error(e, exc_info=True)
                 self.error = True
                 self.time_of_last_error = time.time()
         else:
@@ -403,6 +403,8 @@ class Output:
             value = bool(value)
     
         self.value = value
+        
+    def update(self):
         try:
             self.write(self.value)
         except KeyboardInterrupt:
@@ -650,13 +652,19 @@ class Interlock:
                         logger.info('state:triggered')
                     else:
                         logger.info('state:ok')
+                        
+                
+                    
                 logger.info('Sending status')
                 self.status()
                 
                 if self.heartbeat_connected:
                     logger.info('Sawp heartbeat')
                     self.swap_heartbeat()
-                    
+                
+                for output in self.outputs.values():
+                    output.update()
+                
                 time_passed = time.time()-t
                 self.loop_time = time_passed
                 if 1/self.rate - time_passed > 0:
@@ -664,7 +672,7 @@ class Interlock:
                 else:
                     max_rate = 1/time_passed
                     logger.info(f'rate of {self.rate:2f} could not be reached. Best rate: {max_rate:2f}')
-                print ('all fine, next iteration -->')
+                # ~ print ('all fine, next iteration -->')
         except KeyboardInterrupt:
             raise
         except Exception as e:
@@ -673,6 +681,10 @@ class Interlock:
             self.running = False
             self.trigger()
             self.status()
+            
+            for output in self.outputs.values():
+                    output.update()
+            
             
     def swap_heartbeat(self):
         if self.heartbeat.get_value():

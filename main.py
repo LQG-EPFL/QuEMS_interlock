@@ -8,32 +8,32 @@ logging.basicConfig(stream=sys.stdout, level=logging.WARNING)
 
 logger = logging.getLogger('interlock')
 
-heartbeat = True
-load_config = True
+heartbeat = False
+load_config = False
 
 #connect all the devices
 
 from drivers.piplates_driver import *
 from drivers.pfeiffer_driver import *
 
-pres_ins = make_TPG362('/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AM0076FH-if00-port0')
-temp_ins = make_THERMOplate(2)
-daqc1_ins, daqc1_outs = make_DAQCplate(0)
-daqc2_ins, daqc2_outs = make_DAQCplate(1)
+# ~ pres_ins = make_TPG362('/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AM0076FH-if00-port0')
+# ~ temp_ins = make_THERMOplate(2)
+# ~ daqc1_ins, daqc1_outs = make_DAQCplate(0)
+# ~ daqc2_ins, daqc2_outs = make_DAQCplate(1)
 
 
 #test inputs and outputs
-#import numpy as np
-#test_float = Input(np.random.rand, 'test float', 'float')
-#test_bool = Input(lambda: np.random.rand()>0.5, 'test bool', 'bool')
-#test_out = Output(print, 'test_out','float',0, 0, 0)
+import numpy as np
+test_float = Input(np.random.rand, 'test float', 'float')
+test_bool = Input(lambda: np.random.rand()>0.5, 'test bool', 'bool')
+test_out = Output(print, 'test_out','float',0, 0, 0)
 
 #start interlock
-interlock = Interlock(pres_ins+temp_ins+daqc1_ins+daqc2_ins,daqc1_outs + daqc2_outs)   
+interlock = Interlock([test_float, test_bool], [test_out]) #pres_ins+temp_ins+daqc1_ins+daqc2_ins,daqc1_outs + daqc2_outs)   
 
 #load old configuration
-config_folder = '/home/pi/QuEMS_interlock/configs'
-values_folder = '/home/pi/QuEMS_interlock/values'
+config_folder = '/home/lqg/QuEMS_interlock/configs'
+values_folder = '/home/lqg/QuEMS_interlock/values'
 if load_config:
     interlock.load_config(config_folder+'/startup.iconf')
 
