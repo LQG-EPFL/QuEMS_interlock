@@ -20,7 +20,7 @@ cd ..
 #### influxdb
 
 ```bash
-sudo pip3 install influxdb
+sudo apt install python3-influxdb
 ```
 
 #### pi-plates
@@ -29,19 +29,14 @@ enable spi as described here:
 https://pi-plates.com/getting_started/
 
 ```bash
-sudo pip3 install pi-plates
+sudo pip3 install pi-plates --break-system-packages
 ```
 
-#### psutils
-
-```bash
-sudo pip3 install psutil
-```
 
 ### clone QuEMS_interlock
 
 ```bash
-git clone https://c4science.ch/source/QuEMS_interlock.git
+git clone https://github.com/LQG-EPFL/QuEMS_interlock.git
 ```
 
 Adjust the code in interlock.py to fit your configuration of influxdb:
