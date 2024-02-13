@@ -19,9 +19,10 @@ from interlock import *
 import gui
 
 
-mockup = True
+mockup = False
 heartbeat = True
 load_config = True
+rate = 1.0
 
 #connect all the devices
 if not mockup:
@@ -43,9 +44,9 @@ if mockup:
 
 #start interlock
 if mockup:
-    interlock = Interlock([test_float, test_bool], [test_out]) #pres_ins+temp_ins+daqc1_ins+daqc2_ins,daqc1_outs + daqc2_outs)   
+    interlock = Interlock([test_float, test_bool], [test_out], rate = rate) #pres_ins+temp_ins+daqc1_ins+daqc2_ins,daqc1_outs + daqc2_outs)   
 else:
-    interlock = Interlock(pres_ins+temp_ins+daqc1_ins+daqc2_ins,daqc1_outs + daqc2_outs)   
+    interlock = Interlock(pres_ins+temp_ins+daqc1_ins+daqc2_ins,daqc1_outs + daqc2_outs, rate = rate)   
 
 #load old configuration
 if not mockup:
@@ -77,5 +78,5 @@ import remi
 if mockup:
     remi.start(gui.QuEMS_Interlock,start_browser=False,username = 'lqg', password = 'ManipeEPFL2018', port = 10000, userdata = (interlock,config_folder,values_folder,))
 else:
-    remi.start(gui.QuEMS_Interlock,start_browser=False,username = 'lqg', password = 'ManipeEPFL2018',address='0.0.0.0', port = 10000, userdata = (interlock,config_folder,values_folder,))
+    remi.start(gui.QuEMS_Interlock,start_browser=False, username = 'lqg', password = 'ManipeEPFL2018',address='0.0.0.0', port = 10000, userdata = (interlock,config_folder,values_folder,))
 

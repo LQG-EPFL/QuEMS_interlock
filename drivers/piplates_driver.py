@@ -9,10 +9,14 @@ class ThermoMeter:
         self.tid = tid
         
     def get_value(self):
-        return THERMO.getTEMP(self.piid, self.tid)
+        
+
+        value = THERMO.getTEMP(self.piid, self.tid)
+
+        time.sleep(0.01)
+        return value
 
 def make_THERMOplate(piid):
-    
     inputs = []
     for tid in range(11):
         tid += 1

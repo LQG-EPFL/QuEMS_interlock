@@ -690,7 +690,7 @@ class Interlock:
                     max_rate = 1/time_passed
                     logger.info(f'rate of {self.rate:2f} could not be reached. Best rate: {max_rate:2f}')
                 # ~ print ('all fine, next iteration -->')
-                #print (time.time()-t)
+                print (time.time()-t)
         except KeyboardInterrupt:
             raise
         except Exception as e:

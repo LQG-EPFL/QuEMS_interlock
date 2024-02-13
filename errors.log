@@ -6501,3 +6501,1669 @@ Traceback (most recent call last):
   File "C:\Users\nicks\OneDrive\Projekte und Jobs\EPFL_Brantut\programs\interlock\QuEMS_interlock\main.py", line 40, in <lambda>
     test_float = Input(lambda: np.random.rand()/(int(np.random.rand()*10)), 'test float', 'float')
 ZeroDivisionError: float division by zero
+[2024-02-13 14:20:04,022] {server.py:872} INFO - Started httpserver http://0.0.0.0:10000/
+[2024-02-13 14:20:04,093] {server.py:136} INFO - connection established: ('192.168.1.1', 60273)
+[2024-02-13 14:20:04,270] {server.py:136} INFO - connection established: ('192.168.1.45', 55275)
+[2024-02-13 14:20:04,285] {server.py:136} INFO - connection established: ('192.168.1.45', 55315)
+[2024-02-13 14:20:04,430] {server.py:649} INFO - built UI (path=/)
+[2024-02-13 14:20:05,835] {server.py:653} ERROR - error processing GET request
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/remi-2022.7.27.post24+g4be71eb-py3.11.egg/remi/server.py", line 651, in do_GET
+    self._process_all(path)
+  File "/usr/local/lib/python3.11/dist-packages/remi-2022.7.27.post24+g4be71eb-py3.11.egg/remi/server.py", line 696, in _process_all
+    self.wfile.write(encode_text("<!DOCTYPE html>\n"))
+  File "/usr/lib/python3.11/socketserver.py", line 834, in write
+    self._sock.sendall(b)
+BrokenPipeError: [Errno 32] Broken pipe
+[2024-02-13 14:20:06,328] {server.py:136} INFO - connection established: ('192.168.1.45', 55355)
+[2024-02-13 14:20:06,328] {server.py:258} INFO - handshake complete
+[2024-02-13 14:20:07,973] {server.py:136} INFO - connection established: ('192.168.1.45', 55384)
+[2024-02-13 14:20:07,974] {server.py:258} INFO - handshake complete
+[2024-02-13 14:20:09,561] {server.py:136} INFO - connection established: ('192.168.1.1', 60288)
+[2024-02-13 14:20:09,561] {server.py:258} INFO - handshake complete
+[2024-02-13 14:20:09,622] {server.py:301} ERROR - error parsing websocket
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/remi-2022.7.27.post24+g4be71eb-py3.11.egg/remi/server.py", line 296, in on_message
+    callback = get_method_by_name(runtimeInstances[widget_id], function_name)
+                                  ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.11/weakref.py", line 136, in __getitem__
+    o = self.data[key]()
+        ~~~~~~~~~^^^^^
+KeyError: '547829139472'
+[2024-02-13 14:20:20,431] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:20:40,906] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:23:16,795] {server.py:872} INFO - Started httpserver http://0.0.0.0:10000/
+[2024-02-13 14:23:17,186] {server.py:136} INFO - connection established: ('192.168.1.45', 58967)
+[2024-02-13 14:23:17,194] {server.py:136} INFO - connection established: ('192.168.1.1', 60343)
+[2024-02-13 14:23:18,329] {server.py:136} INFO - connection established: ('192.168.1.45', 59027)
+[2024-02-13 14:23:18,373] {server.py:649} INFO - built UI (path=/)
+[2024-02-13 14:23:18,509] {server.py:136} INFO - connection established: ('192.168.1.45', 59035)
+[2024-02-13 14:23:18,518] {server.py:258} INFO - handshake complete
+[2024-02-13 14:23:20,394] {server.py:136} INFO - connection established: ('192.168.1.1', 60346)
+[2024-02-13 14:23:20,394] {server.py:258} INFO - handshake complete
+[2024-02-13 14:23:22,937] {server.py:136} INFO - connection established: ('192.168.1.45', 59120)
+[2024-02-13 14:23:22,937] {server.py:258} INFO - handshake complete
+[2024-02-13 14:28:56,012] {server.py:898} INFO - *** signal 2 received.
+[2024-02-13 14:28:56,012] {server.py:898} INFO - *** signal 2 received.
+[2024-02-13 14:28:56,012] {server.py:898} INFO - *** signal 2 received.
+[2024-02-13 14:29:25,225] {server.py:872} INFO - Started httpserver http://0.0.0.0:10000/
+[2024-02-13 14:29:25,627] {server.py:136} INFO - connection established: ('192.168.1.45', 53209)
+[2024-02-13 14:29:25,656] {server.py:136} INFO - connection established: ('192.168.1.45', 53225)
+[2024-02-13 14:29:25,671] {server.py:136} INFO - connection established: ('192.168.1.45', 53227)
+[2024-02-13 14:29:25,703] {server.py:136} INFO - connection established: ('192.168.1.45', 53229)
+[2024-02-13 14:29:25,721] {server.py:136} INFO - connection established: ('192.168.1.45', 53230)
+[2024-02-13 14:29:25,735] {server.py:136} INFO - connection established: ('192.168.1.1', 60390)
+[2024-02-13 14:29:25,774] {server.py:649} INFO - built UI (path=/)
+[2024-02-13 14:29:25,775] {server.py:136} INFO - connection established: ('192.168.1.45', 53231)
+[2024-02-13 14:29:25,776] {server.py:649} INFO - built UI (path=/)
+[2024-02-13 14:29:25,809] {server.py:258} INFO - handshake complete
+[2024-02-13 14:29:25,949] {server.py:136} INFO - connection established: ('192.168.1.45', 53237)
+[2024-02-13 14:29:25,958] {server.py:258} INFO - handshake complete
+[2024-02-13 14:29:26,511] {server.py:136} INFO - connection established: ('192.168.1.1', 60394)
+[2024-02-13 14:29:26,522] {server.py:258} INFO - handshake complete
+[2024-02-13 14:29:28,905] {server.py:653} ERROR - error processing GET request
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/remi-2022.7.27.post24+g4be71eb-py3.11.egg/remi/server.py", line 651, in do_GET
+    self._process_all(path)
+  File "/usr/local/lib/python3.11/dist-packages/remi-2022.7.27.post24+g4be71eb-py3.11.egg/remi/server.py", line 696, in _process_all
+    self.wfile.write(encode_text("<!DOCTYPE html>\n"))
+  File "/usr/lib/python3.11/socketserver.py", line 834, in write
+    self._sock.sendall(b)
+BrokenPipeError: [Errno 32] Broken pipe
+[2024-02-13 14:29:28,928] {server.py:136} INFO - connection established: ('192.168.1.1', 60395)
+[2024-02-13 14:29:28,928] {server.py:258} INFO - handshake complete
+[2024-02-13 14:31:39,731] {server.py:898} INFO - *** signal 2 received.
+[2024-02-13 14:31:39,732] {server.py:898} INFO - *** signal 2 received.
+[2024-02-13 14:31:39,869] {server.py:898} INFO - *** signal 2 received.
+[2024-02-13 14:33:23,842] {server.py:872} INFO - Started httpserver http://0.0.0.0:10000/
+[2024-02-13 14:33:23,988] {server.py:649} INFO - built UI (path=/)
+[2024-02-13 14:33:24,011] {server.py:136} INFO - connection established: ('192.168.1.45', 57744)
+[2024-02-13 14:33:24,026] {server.py:258} INFO - handshake complete
+[2024-02-13 14:33:25,446] {server.py:653} ERROR - error processing GET request
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/remi-2022.7.27.post24+g4be71eb-py3.11.egg/remi/server.py", line 651, in do_GET
+    self._process_all(path)
+  File "/usr/local/lib/python3.11/dist-packages/remi-2022.7.27.post24+g4be71eb-py3.11.egg/remi/server.py", line 696, in _process_all
+    self.wfile.write(encode_text("<!DOCTYPE html>\n"))
+  File "/usr/lib/python3.11/socketserver.py", line 834, in write
+    self._sock.sendall(b)
+BrokenPipeError: [Errno 32] Broken pipe
+[2024-02-13 14:33:25,818] {server.py:136} INFO - connection established: ('192.168.1.45', 57808)
+[2024-02-13 14:33:25,819] {server.py:258} INFO - handshake complete
+[2024-02-13 14:33:27,723] {server.py:136} INFO - connection established: ('192.168.1.1', 60486)
+[2024-02-13 14:33:27,724] {server.py:258} INFO - handshake complete
+[2024-02-13 14:33:27,814] {server.py:301} ERROR - error parsing websocket
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/remi-2022.7.27.post24+g4be71eb-py3.11.egg/remi/server.py", line 296, in on_message
+    callback = get_method_by_name(runtimeInstances[widget_id], function_name)
+                                  ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.11/weakref.py", line 136, in __getitem__
+    o = self.data[key]()
+        ~~~~~~~~~^^^^^
+KeyError: '548103031632'
+[2024-02-13 14:33:28,456] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:33:31,814] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:33:41,810] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:34:26,271] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:34:27,367] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:34:34,044] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:34:37,386] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:34:57,382] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:35:00,707] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:35:11,839] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:35:15,169] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:35:28,496] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:35:35,207] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:35:39,645] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:35:42,959] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:35:49,635] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:36:00,750] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:36:24,067] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:36:26,323] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:36:40,742] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:36:45,200] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:36:47,426] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:36:51,857] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:37:08,527] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:37:25,201] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:37:34,109] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:37:45,228] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:37:51,893] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:37:52,999] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:37:56,326] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:37:56,571] {server.py:898} INFO - *** signal 2 received.
+[2024-02-13 14:37:56,770] {server.py:898} INFO - *** signal 2 received.
+[2024-02-13 14:38:13,587] {server.py:872} INFO - Started httpserver http://0.0.0.0:10000/
+[2024-02-13 14:38:13,862] {server.py:136} INFO - connection established: ('192.168.1.1', 60781)
+[2024-02-13 14:38:13,908] {server.py:136} INFO - connection established: ('192.168.1.45', 50525)
+[2024-02-13 14:38:13,924] {server.py:136} INFO - connection established: ('192.168.1.45', 50540)
+[2024-02-13 14:38:13,940] {server.py:136} INFO - connection established: ('192.168.1.45', 50542)
+[2024-02-13 14:38:13,954] {server.py:136} INFO - connection established: ('192.168.1.1', 60782)
+[2024-02-13 14:38:13,956] {server.py:136} INFO - connection established: ('192.168.1.45', 50543)
+[2024-02-13 14:38:13,971] {server.py:649} INFO - built UI (path=/)
+[2024-02-13 14:38:14,011] {server.py:136} INFO - connection established: ('192.168.1.45', 50545)
+[2024-02-13 14:38:14,013] {server.py:258} INFO - handshake complete
+[2024-02-13 14:38:14,082] {server.py:136} INFO - connection established: ('192.168.1.1', 60787)
+[2024-02-13 14:38:14,083] {server.py:258} INFO - handshake complete
+[2024-02-13 14:38:14,108] {server.py:136} INFO - connection established: ('192.168.1.45', 50549)
+[2024-02-13 14:38:14,129] {server.py:258} INFO - handshake complete
+[2024-02-13 14:38:15,575] {server.py:653} ERROR - error processing GET request
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/remi-2022.7.27.post24+g4be71eb-py3.11.egg/remi/server.py", line 651, in do_GET
+    self._process_all(path)
+  File "/usr/local/lib/python3.11/dist-packages/remi-2022.7.27.post24+g4be71eb-py3.11.egg/remi/server.py", line 696, in _process_all
+    self.wfile.write(encode_text("<!DOCTYPE html>\n"))
+  File "/usr/lib/python3.11/socketserver.py", line 834, in write
+    self._sock.sendall(b)
+BrokenPipeError: [Errno 32] Broken pipe
+[2024-02-13 14:38:15,616] {server.py:136} INFO - connection established: ('192.168.1.1', 60788)
+[2024-02-13 14:38:15,616] {server.py:258} INFO - handshake complete
+[2024-02-13 14:38:15,636] {server.py:136} INFO - connection established: ('192.168.1.45', 50578)
+[2024-02-13 14:38:15,645] {server.py:258} INFO - handshake complete
+[2024-02-13 14:38:16,512] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:38:21,971] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:38:24,715] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:38:25,204] {server.py:898} INFO - *** signal 2 received.
+[2024-02-13 14:38:25,204] {server.py:898} INFO - *** signal 2 received.
+[2024-02-13 14:38:38,997] {server.py:872} INFO - Started httpserver http://0.0.0.0:10000/
+[2024-02-13 14:38:39,084] {server.py:649} INFO - built UI (path=/)
+[2024-02-13 14:38:39,332] {server.py:136} INFO - connection established: ('192.168.1.45', 51013)
+[2024-02-13 14:38:39,345] {server.py:258} INFO - handshake complete
+[2024-02-13 14:38:39,384] {server.py:136} INFO - connection established: ('192.168.1.1', 60802)
+[2024-02-13 14:38:39,394] {server.py:258} INFO - handshake complete
+[2024-02-13 14:38:39,395] {server.py:136} INFO - connection established: ('192.168.1.45', 51033)
+[2024-02-13 14:38:39,417] {server.py:258} INFO - handshake complete
+[2024-02-13 14:38:40,730] {server.py:653} ERROR - error processing GET request
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/remi-2022.7.27.post24+g4be71eb-py3.11.egg/remi/server.py", line 651, in do_GET
+    self._process_all(path)
+  File "/usr/local/lib/python3.11/dist-packages/remi-2022.7.27.post24+g4be71eb-py3.11.egg/remi/server.py", line 696, in _process_all
+    self.wfile.write(encode_text("<!DOCTYPE html>\n"))
+  File "/usr/lib/python3.11/socketserver.py", line 834, in write
+    self._sock.sendall(b)
+BrokenPipeError: [Errno 32] Broken pipe
+[2024-02-13 14:38:40,755] {server.py:136} INFO - connection established: ('192.168.1.1', 60806)
+[2024-02-13 14:38:40,757] {server.py:258} INFO - handshake complete
+[2024-02-13 14:38:55,185] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:39:02,346] {server.py:898} INFO - *** signal 2 received.
+[2024-02-13 14:39:02,346] {server.py:898} INFO - *** signal 2 received.
+[2024-02-13 14:39:02,396] {server.py:898} INFO - *** signal 2 received.
+[2024-02-13 14:39:53,487] {server.py:872} INFO - Started httpserver http://0.0.0.0:10000/
+[2024-02-13 14:39:53,842] {server.py:136} INFO - connection established: ('192.168.1.45', 52451)
+[2024-02-13 14:39:53,858] {server.py:136} INFO - connection established: ('192.168.1.45', 52482)
+[2024-02-13 14:39:53,881] {server.py:136} INFO - connection established: ('192.168.1.45', 52483)
+[2024-02-13 14:39:53,904] {server.py:136} INFO - connection established: ('192.168.1.45', 52484)
+[2024-02-13 14:39:53,914] {server.py:136} INFO - connection established: ('192.168.1.1', 60863)
+[2024-02-13 14:39:53,932] {server.py:136} INFO - connection established: ('192.168.1.45', 52488)
+[2024-02-13 14:39:53,933] {server.py:649} INFO - built UI (path=/)
+[2024-02-13 14:39:53,936] {server.py:258} INFO - handshake complete
+[2024-02-13 14:39:53,950] {server.py:136} INFO - connection established: ('192.168.1.1', 60864)
+[2024-02-13 14:39:53,967] {server.py:258} INFO - handshake complete
+[2024-02-13 14:39:53,990] {server.py:136} INFO - connection established: ('192.168.1.45', 52489)
+[2024-02-13 14:39:53,999] {server.py:258} INFO - handshake complete
+[2024-02-13 14:39:55,567] {server.py:136} INFO - connection established: ('192.168.1.45', 52523)
+[2024-02-13 14:39:55,568] {server.py:258} INFO - handshake complete
+[2024-02-13 14:40:10,700] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:40:19,706] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:40:23,683] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:40:42,708] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:40:43,683] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:40:53,685] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:41:27,712] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:41:41,742] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:41:45,743] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:41:49,716] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:41:58,726] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:42:03,717] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 14:42:03,800] {server.py:898} INFO - *** signal 2 received.
+[2024-02-13 14:42:03,887] {server.py:898} INFO - *** signal 2 received.
+[2024-02-13 14:42:04,057] {server.py:898} INFO - *** signal 2 received.
+[2024-02-13 14:45:43,923] {interlock.py:259} ERROR - (34, 'Numerical result out of range')
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 157, in getTEMP
+    Temp+=kTc[k][i]*(Vhot**i)
+                    ~~~~^^~
+OverflowError: (34, 'Numerical result out of range')
+[2024-02-13 14:45:43,940] {interlock.py:259} ERROR - (34, 'Numerical result out of range')
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 157, in getTEMP
+    Temp+=kTc[k][i]*(Vhot**i)
+                    ~~~~^^~
+OverflowError: (34, 'Numerical result out of range')
+[2024-02-13 14:45:43,947] {interlock.py:259} ERROR - (34, 'Numerical result out of range')
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 157, in getTEMP
+    Temp+=kTc[k][i]*(Vhot**i)
+                    ~~~~^^~
+OverflowError: (34, 'Numerical result out of range')
+[2024-02-13 14:45:43,953] {interlock.py:259} ERROR - (34, 'Numerical result out of range')
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 157, in getTEMP
+    Temp+=kTc[k][i]*(Vhot**i)
+                    ~~~~^^~
+OverflowError: (34, 'Numerical result out of range')
+[2024-02-13 14:45:43,959] {interlock.py:259} ERROR - (34, 'Numerical result out of range')
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 157, in getTEMP
+    Temp+=kTc[k][i]*(Vhot**i)
+                    ~~~~^^~
+OverflowError: (34, 'Numerical result out of range')
+[2024-02-13 14:45:43,966] {interlock.py:259} ERROR - (34, 'Numerical result out of range')
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 12, in get_value
+    return THERMO.getTEMP(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 157, in getTEMP
+    Temp+=kTc[k][i]*(Vhot**i)
+                    ~~~~^^~
+OverflowError: (34, 'Numerical result out of range')
+[2024-02-13 14:45:43,974] {interlock.py:259} ERROR - No DAQC2plate found at address 0
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 29, in get_value
+    return bool(DQ.getDINbit(self.piid, self.tid))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 164, in getDINbit
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 0
+[2024-02-13 14:45:43,983] {interlock.py:259} ERROR - No DAQC2plate found at address 0
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 29, in get_value
+    return bool(DQ.getDINbit(self.piid, self.tid))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 164, in getDINbit
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 0
+[2024-02-13 14:45:43,989] {interlock.py:259} ERROR - No DAQC2plate found at address 0
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 29, in get_value
+    return bool(DQ.getDINbit(self.piid, self.tid))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 164, in getDINbit
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 0
+[2024-02-13 14:45:43,994] {interlock.py:259} ERROR - No DAQC2plate found at address 0
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 29, in get_value
+    return bool(DQ.getDINbit(self.piid, self.tid))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 164, in getDINbit
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 0
+[2024-02-13 14:45:44,001] {interlock.py:259} ERROR - No DAQC2plate found at address 0
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 29, in get_value
+    return bool(DQ.getDINbit(self.piid, self.tid))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 164, in getDINbit
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 0
+[2024-02-13 14:45:44,006] {interlock.py:259} ERROR - No DAQC2plate found at address 0
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 29, in get_value
+    return bool(DQ.getDINbit(self.piid, self.tid))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 164, in getDINbit
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 0
+[2024-02-13 14:45:44,013] {interlock.py:259} ERROR - No DAQC2plate found at address 0
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 29, in get_value
+    return bool(DQ.getDINbit(self.piid, self.tid))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 164, in getDINbit
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 0
+[2024-02-13 14:45:44,021] {interlock.py:259} ERROR - No DAQC2plate found at address 0
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 29, in get_value
+    return bool(DQ.getDINbit(self.piid, self.tid))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 164, in getDINbit
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 0
+[2024-02-13 14:45:44,026] {interlock.py:259} ERROR - No DAQC2plate found at address 0
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 48, in get_value
+    return DQ.getADC(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 86, in getADC
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 0
+[2024-02-13 14:45:44,032] {interlock.py:259} ERROR - No DAQC2plate found at address 0
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 48, in get_value
+    return DQ.getADC(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 86, in getADC
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 0
+[2024-02-13 14:45:44,037] {interlock.py:259} ERROR - No DAQC2plate found at address 0
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 48, in get_value
+    return DQ.getADC(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 86, in getADC
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 0
+[2024-02-13 14:45:44,042] {interlock.py:259} ERROR - No DAQC2plate found at address 0
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 48, in get_value
+    return DQ.getADC(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 86, in getADC
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 0
+[2024-02-13 14:45:44,049] {interlock.py:259} ERROR - No DAQC2plate found at address 0
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 48, in get_value
+    return DQ.getADC(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 86, in getADC
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 0
+[2024-02-13 14:45:44,054] {interlock.py:259} ERROR - No DAQC2plate found at address 0
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 48, in get_value
+    return DQ.getADC(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 86, in getADC
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 0
+[2024-02-13 14:45:44,060] {interlock.py:259} ERROR - No DAQC2plate found at address 0
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 48, in get_value
+    return DQ.getADC(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 86, in getADC
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 0
+[2024-02-13 14:45:44,066] {interlock.py:259} ERROR - No DAQC2plate found at address 0
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 48, in get_value
+    return DQ.getADC(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 86, in getADC
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 0
+[2024-02-13 14:45:44,071] {interlock.py:259} ERROR - No DAQC2plate found at address 1
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 29, in get_value
+    return bool(DQ.getDINbit(self.piid, self.tid))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 164, in getDINbit
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 1
+[2024-02-13 14:45:44,076] {interlock.py:259} ERROR - No DAQC2plate found at address 1
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 29, in get_value
+    return bool(DQ.getDINbit(self.piid, self.tid))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 164, in getDINbit
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 1
+[2024-02-13 14:45:44,082] {interlock.py:259} ERROR - No DAQC2plate found at address 1
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 29, in get_value
+    return bool(DQ.getDINbit(self.piid, self.tid))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 164, in getDINbit
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 1
+[2024-02-13 14:45:44,087] {interlock.py:259} ERROR - No DAQC2plate found at address 1
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 29, in get_value
+    return bool(DQ.getDINbit(self.piid, self.tid))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 164, in getDINbit
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 1
+[2024-02-13 14:45:44,092] {interlock.py:259} ERROR - No DAQC2plate found at address 1
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 29, in get_value
+    return bool(DQ.getDINbit(self.piid, self.tid))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 164, in getDINbit
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 1
+[2024-02-13 14:45:44,098] {interlock.py:259} ERROR - No DAQC2plate found at address 1
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 29, in get_value
+    return bool(DQ.getDINbit(self.piid, self.tid))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 164, in getDINbit
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 1
+[2024-02-13 14:45:44,102] {interlock.py:259} ERROR - No DAQC2plate found at address 1
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 29, in get_value
+    return bool(DQ.getDINbit(self.piid, self.tid))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 164, in getDINbit
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 1
+[2024-02-13 14:45:44,106] {interlock.py:259} ERROR - No DAQC2plate found at address 1
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 29, in get_value
+    return bool(DQ.getDINbit(self.piid, self.tid))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 164, in getDINbit
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 1
+[2024-02-13 14:45:44,112] {interlock.py:259} ERROR - No DAQC2plate found at address 1
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 48, in get_value
+    return DQ.getADC(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 86, in getADC
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 1
+[2024-02-13 14:45:44,118] {interlock.py:259} ERROR - No DAQC2plate found at address 1
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 48, in get_value
+    return DQ.getADC(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 86, in getADC
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 1
+[2024-02-13 14:45:44,123] {interlock.py:259} ERROR - No DAQC2plate found at address 1
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 48, in get_value
+    return DQ.getADC(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 86, in getADC
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 1
+[2024-02-13 14:45:44,130] {interlock.py:259} ERROR - No DAQC2plate found at address 1
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 48, in get_value
+    return DQ.getADC(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 86, in getADC
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 1
+[2024-02-13 14:45:44,136] {interlock.py:259} ERROR - No DAQC2plate found at address 1
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 48, in get_value
+    return DQ.getADC(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 86, in getADC
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 1
+[2024-02-13 14:45:44,141] {interlock.py:259} ERROR - No DAQC2plate found at address 1
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 48, in get_value
+    return DQ.getADC(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 86, in getADC
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 1
+[2024-02-13 14:45:44,147] {interlock.py:259} ERROR - No DAQC2plate found at address 1
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 48, in get_value
+    return DQ.getADC(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 86, in getADC
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 1
+[2024-02-13 14:45:44,151] {interlock.py:259} ERROR - No DAQC2plate found at address 1
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 48, in get_value
+    return DQ.getADC(self.piid, self.tid)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 86, in getADC
+    VerifyADDR(addr)
+  File "/usr/local/lib/python3.11/dist-packages/piplates/DAQC2plate.py", line 566, in VerifyADDR
+    assert (daqc2sPresent[addr]==1),"No DAQC2plate found at address "+addr_str
+            ^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: No DAQC2plate found at address 1
+[2024-02-13 14:56:03,507] {server.py:872} INFO - Started httpserver http://0.0.0.0:10000/
+[2024-02-13 14:56:03,691] {server.py:136} INFO - connection established: ('192.168.1.45', 58005)
+[2024-02-13 14:56:03,706] {server.py:136} INFO - connection established: ('192.168.1.45', 58044)
+[2024-02-13 14:56:03,723] {server.py:136} INFO - connection established: ('192.168.1.45', 58045)
+[2024-02-13 14:56:03,768] {server.py:136} INFO - connection established: ('192.168.1.45', 58047)
+[2024-02-13 14:56:03,783] {server.py:136} INFO - connection established: ('192.168.1.45', 58049)
+[2024-02-13 14:56:03,794] {server.py:649} INFO - built UI (path=/)
+[2024-02-13 14:56:03,951] {server.py:136} INFO - connection established: ('192.168.1.45', 58052)
+[2024-02-13 14:56:03,962] {server.py:258} INFO - handshake complete
+[2024-02-13 14:56:04,014] {server.py:136} INFO - connection established: ('192.168.1.45', 58054)
+[2024-02-13 14:56:04,021] {server.py:258} INFO - handshake complete
+[2024-02-13 14:56:04,022] {server.py:136} INFO - connection established: ('192.168.1.1', 61151)
+[2024-02-13 14:56:04,033] {server.py:258} INFO - handshake complete
+[2024-02-13 14:56:05,390] {server.py:136} INFO - connection established: ('192.168.1.45', 58088)
+[2024-02-13 14:56:05,391] {server.py:258} INFO - handshake complete
+[2024-02-13 14:56:05,443] {server.py:136} INFO - connection established: ('192.168.1.45', 58089)
+[2024-02-13 14:56:05,443] {server.py:301} ERROR - error parsing websocket
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/remi-2022.7.27.post24+g4be71eb-py3.11.egg/remi/server.py", line 296, in on_message
+    callback = get_method_by_name(runtimeInstances[widget_id], function_name)
+                                  ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.11/weakref.py", line 136, in __getitem__
+    o = self.data[key]()
+        ~~~~~~~~~^^^^^
+KeyError: '548255175632'
+[2024-02-13 14:56:05,444] {server.py:258} INFO - handshake complete
+[2024-02-13 14:56:05,460] {server.py:203} ERROR - Error managing incoming websocket message
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/remi-2022.7.27.post24+g4be71eb-py3.11.egg/remi/server.py", line 199, in read_next_message
+    self.on_message(from_websocket(decoded))
+  File "/usr/local/lib/python3.11/dist-packages/remi-2022.7.27.post24+g4be71eb-py3.11.egg/remi/server.py", line 272, in on_message
+    self.send_message(_MSG_ACK)
+  File "/usr/local/lib/python3.11/dist-packages/remi-2022.7.27.post24+g4be71eb-py3.11.egg/remi/server.py", line 236, in send_message
+    self.request.sendall(out)
+BrokenPipeError: [Errno 32] Broken pipe
+[2024-02-13 14:59:49,868] {server.py:898} INFO - *** signal 2 received.
+[2024-02-13 14:59:50,034] {server.py:898} INFO - *** signal 2 received.
+[2024-02-13 14:59:50,193] {server.py:898} INFO - *** signal 2 received.
+[2024-02-13 14:59:59,187] {server.py:872} INFO - Started httpserver http://0.0.0.0:10000/
+[2024-02-13 14:59:59,242] {server.py:136} INFO - connection established: ('192.168.1.45', 49557)
+[2024-02-13 14:59:59,278] {server.py:649} INFO - built UI (path=/)
+[2024-02-13 14:59:59,291] {server.py:136} INFO - connection established: ('192.168.1.45', 49597)
+[2024-02-13 14:59:59,292] {server.py:258} INFO - handshake complete
+[2024-02-13 14:59:59,379] {server.py:136} INFO - connection established: ('192.168.1.45', 49600)
+[2024-02-13 14:59:59,383] {server.py:258} INFO - handshake complete
+[2024-02-13 14:59:59,511] {server.py:136} INFO - connection established: ('192.168.1.1', 61176)
+[2024-02-13 14:59:59,522] {server.py:258} INFO - handshake complete
+[2024-02-13 15:00:00,896] {server.py:136} INFO - connection established: ('192.168.1.45', 49630)
+[2024-02-13 15:00:00,898] {server.py:258} INFO - handshake complete
+[2024-02-13 15:00:07,456] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 19, in get_value
+    raise e
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 14, in get_value
+    value = THERMO.getTEMP(self.piid, self.tid)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 15:00:16,666] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 19, in get_value
+    raise e
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 14, in get_value
+    value = THERMO.getTEMP(self.piid, self.tid)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 15:00:30,180] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 19, in get_value
+    raise e
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 14, in get_value
+    value = THERMO.getTEMP(self.piid, self.tid)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 15:00:31,183] {interlock.py:259} ERROR - list index out of range
+Traceback (most recent call last):
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 254, in update
+    value = self.read_timeout()
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/interlock.py", line 247, in read_timeout
+    return self.read()
+           ^^^^^^^^^^^
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 19, in get_value
+    raise e
+  File "/home/lqg/QuEMS_interlock/drivers/piplates_driver.py", line 14, in get_value
+    value = THERMO.getTEMP(self.piid, self.tid)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/dist-packages/piplates/THERMOplate.py", line 126, in getTEMP
+    Tvals[0]=resp[0]*256+resp[1]        #T channel data
+             ~~~~^^^
+IndexError: list index out of range
+[2024-02-13 15:23:20,111] {server.py:872} INFO - Started httpserver http://0.0.0.0:10000/
+[2024-02-13 15:23:20,244] {server.py:649} INFO - built UI (path=/)
+[2024-02-13 15:23:20,334] {server.py:136} INFO - connection established: ('192.168.1.45', 51075)
+[2024-02-13 15:23:20,341] {server.py:258} INFO - handshake complete
+[2024-02-13 15:23:23,264] {server.py:136} INFO - connection established: ('192.168.1.45', 51153)
+[2024-02-13 15:23:23,265] {server.py:258} INFO - handshake complete
+[2024-02-13 15:23:23,321] {server.py:301} ERROR - error parsing websocket
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/remi-2022.7.27.post24+g4be71eb-py3.11.egg/remi/server.py", line 296, in on_message
+    callback = get_method_by_name(runtimeInstances[widget_id], function_name)
+                                  ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.11/weakref.py", line 136, in __getitem__
+    o = self.data[key]()
+        ~~~~~~~~~^^^^^
+KeyError: '547776035664'
+[2024-02-13 15:23:26,487] {server.py:136} INFO - connection established: ('192.168.1.1', 62356)
+[2024-02-13 15:23:26,487] {server.py:258} INFO - handshake complete
+[2024-02-13 15:23:26,536] {server.py:301} ERROR - error parsing websocket
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/dist-packages/remi-2022.7.27.post24+g4be71eb-py3.11.egg/remi/server.py", line 296, in on_message
+    callback = get_method_by_name(runtimeInstances[widget_id], function_name)
+                                  ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/usr/lib/python3.11/weakref.py", line 136, in __getitem__
+    o = self.data[key]()
+        ~~~~~~~~~^^^^^
+KeyError: '547776035664'
