@@ -1448,7 +1448,7 @@ class ValuesManager(gui.Container):
         if button.filename == 'day.ival':
             from random import randrange
             import time
-            poemsdb = np.load('sonnets.npy', allow_pickle = True)
+            poemsdb = np.load('/home/lqg/QuEMS_interlock/sonnets.npy', allow_pickle = True)
             randid = randrange(len(poemsdb))
             
             poem = poemsdb[randid]

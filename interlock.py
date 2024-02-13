@@ -19,7 +19,7 @@ class InfluxdbChannel:
         error_timeout: if there is any error with the connection to influxdb, the object will do nothing until
         the error_timeout time has part
         '''
-        self.dbClient = InfluxDBClient('192.168.0.1', 8086, 'root', 'root', 'mydb',
+        self.dbClient = InfluxDBClient('192.168.1.1', 8086, 'root', 'root', 'mydb',
                        timeout = 0.1, retries = 2)
         self.error = False
         self.error_timeout = error_timeout
