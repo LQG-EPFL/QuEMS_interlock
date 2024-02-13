@@ -204,7 +204,7 @@ class Input:
             
         self.triggers = []
         
-        self.get_value()
+        self.update()
             
     def add_trigger(self, mode, value = None, trigger_count = 10):
         '''
@@ -243,9 +243,13 @@ class Input:
             trigger.reset()
     
     def read_timeout(self):
+        
         return self.read()
     
-    def get_value(self):
+    
+    def update(self):
+    
+        success = True
         try:
             value = self.read_timeout()
         except KeyboardInterrupt:
@@ -253,12 +257,20 @@ class Input:
         except Exception as e:
             logger.error('Error in reading the value from ', str(self))
             logger.error(e, exc_info=True)
-            raise Exception('Value of ',str(self),' could not be read')
+            
+            success = False
+            
+            value = -1
+            #raise Exception('Value of ',str(self),' could not be read')
             
         self.last_value = value
         self.status()
         
-        return value
+        return success
+        
+    def get_value(self):
+        
+        return self.last_value
         
     def status(self):
 
@@ -284,8 +296,6 @@ class Input:
             logger.error(e, exc_info=True)
         
     def check_triggers(self):
-        self.get_value()
-        
         to_trig = False
         
         for trigger in self.triggers:
@@ -472,7 +482,6 @@ class Output:
         
         self.set_value(self.triggered_value)
 
-
 class Interlock:
     def __init__(self, inputs, outputs, rate = 1, trigger_count = 10):
         self.loop_time = 0.
@@ -493,10 +502,9 @@ class Interlock:
         self.gui = False
         self.heartbeat_connected = False
         
-        
         self.trigger()
         
-        
+
     
     def get_input_tags(self):
         tags = set([])
@@ -638,9 +646,17 @@ class Interlock:
                 
                 logger.info('Check inputs')
                 
+                # read inputs from device
+                for inp in self.inputs.values():
+                    to_trig = not inp.update() or to_trig
+                
+                
+                # check triggers
                 for inp in self.inputs.values():
                     to_trig = inp.check_triggers() or to_trig
                     logger.info(inp)
+                
+                # react to triggers
                 if self.triggered:
                     to_trig = False
                 
@@ -657,11 +673,12 @@ class Interlock:
                     
                 logger.info('Sending status')
                 self.status()
-                
+                # update heartbeat
                 if self.heartbeat_connected:
                     logger.info('Sawp heartbeat')
                     self.swap_heartbeat()
                 
+                # update outputs
                 for output in self.outputs.values():
                     output.update()
                 
@@ -673,6 +690,7 @@ class Interlock:
                     max_rate = 1/time_passed
                     logger.info(f'rate of {self.rate:2f} could not be reached. Best rate: {max_rate:2f}')
                 # ~ print ('all fine, next iteration -->')
+                #print (time.time()-t)
         except KeyboardInterrupt:
             raise
         except Exception as e:

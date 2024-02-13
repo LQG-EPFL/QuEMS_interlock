@@ -999,6 +999,73 @@ class OutputsExplorer(gui.VBox):
         self.outputs_cont.reload()
         for output in self.outputs_cont.elements:
             output.reload()
+import os
+def tail(f, lines=1, _buffer=4098):
+    """Tail a file and get X lines from the end"""
+    # place holder for the lines found
+    lines_found = []
+
+    # block counter will be multiplied by buffer
+    # to get the block size from the end
+    block_counter = -1
+
+    # loop until we find X lines
+    while len(lines_found) < lines:
+        try:
+            f.seek(block_counter * _buffer, os.SEEK_END)
+        except IOError:  # either file is too small, or too many lines requested
+            f.seek(0)
+            lines_found = f.readlines()
+            break
+
+        lines_found = f.readlines()
+
+        # we found enough lines, get out
+        # Removed this line because it was redundant the while will catch
+        # it, I left it for history
+        # if len(lines_found) > lines:
+        #    break
+
+        # decrement the block counter to get the
+        # next X bytes
+        block_counter -= 1
+
+    return ''.join(lines_found[-lines:])
+   
+class LogExplorer(gui.VBox):
+    def __init__(self, interlock, app, *args, **kwargs):
+        self.interlock = interlock
+        self.app = app
+        super(LogExplorer, self).__init__(*args, **kwargs)
+        
+        self.style.update({'width': '100%'})
+        self.style['border-radius'] = '25px'
+        self.style['margin-top'] = '1em'
+        self.style['padding-top'] = '1em'
+        self.style['margin-bottom'] = '1em'
+        self.style['padding-bottom'] = '1em'
+        
+        
+        self.heading = gui.Label('Log', height = '30pt')
+        
+        self.heading.style['font-size'] = '20pt'
+        
+        self.append(self.heading)
+        
+        self.log_element = gui.TextInput(False, height = '400px')
+        self.append(self.log_element)
+
+
+        
+    def refresh(self):
+        with open('errors.log') as f:
+            text = tail(f, lines = 100)
+            
+        if self.log_element.get_value() is not text:
+            self.log_element.set_value(text)
+            # self.app.execute_javascript("document.getElementById('%s').scrollTop=%s;" % (self.log_element.identifier, 9999))
+    def reload(self):
+        pass
    
 class Edit(gui.HBox):
         
@@ -1562,6 +1629,11 @@ class QuEMS_Interlock(App):
         
         self.container.append(self.outexp)
         
+        self.logexp = LogExplorer(self.interlock, self)
+        
+        self.container.append(self.logexp)
+        
+        
         self.start_refresh_loop()
         
         return self.container
@@ -1576,6 +1648,7 @@ class QuEMS_Interlock(App):
         self.inter_status.refresh()
         self.inpexp.refresh()
         self.outexp.refresh()
+        self.logexp.refresh()
         
     def reload(self, widget = None):
         '''
@@ -1585,7 +1658,7 @@ class QuEMS_Interlock(App):
         self.inter_status.reload()
         self.inpexp.reload()
         self.outexp.reload()
-    
+        self.logexp.reload()
 
 
 
